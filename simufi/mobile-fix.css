@@ -1,0 +1,34 @@
+/* ---- SimuFi mobile fixes (override) ---- */
+
+/* Prevent the "one character per line" title bug */
+h1, h2, h3, .title, .headline, [class*="title"], [class*="heading"], [class*="headline"] {
+  word-break: normal !important;
+  overflow-wrap: anywhere !important;
+  white-space: normal !important;
+  hyphens: auto;
+}
+
+/* Make media responsive */
+img, video, canvas, svg {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Mobile layout adjustments */
+@media (max-width: 768px) {
+  body {
+    overflow-x: hidden;
+  }
+
+  /* If your layout is using a 2-col grid/flex, this usually fixes it */
+  main, section, header, .container, [class*="container"], [class*="wrapper"], [class*="layout"], [class*="grid"], [class*="hero"] {
+    max-width: 100%;
+  }
+
+  /* Make big headings scale properly */
+  h1 {
+    font-size: clamp(34px, 9vw, 56px) !important;
+    line-height: 1.05 !important;
+    margin: 16px 16px 10px !important;
+  }
+}
