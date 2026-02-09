@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GET /services</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      background-color: #0d0d0d;
+      color: #00ff99;
+      font-family: 'Fira Code', monospace;
+      display: flex;
+      height: 100vh;
+      flex-direction: row;
+    }
+
+    .sidebar {
+      background-color: #1a1a1a;
+      padding: 2rem;
+      width: 220px;
+      border-right: 2px solid #00ff99;
+    }
+
+    .sidebar a {
+      display: block;
+      color: #00ccff;
+      margin-bottom: 1rem;
+      text-decoration: none;
+    }
+
+    .sidebar a:hover {
+      color: #00ff99;
+    }
+
+    .sidebar .title {
+      color: #ff66cc;
+      font-weight: bold;
+      margin-bottom: 2rem;
+    }
+
+    .content {
+      padding: 2rem;
+      flex-grow: 1;
+    }
+
+    h1 {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+    }
+
+    h2 {
+      color: #ff66cc;
+      font-size: 1.25rem;
+      margin-top: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    .service-item {
+      cursor: pointer;
+      margin-bottom: 1rem;
+      padding: 0.5rem;
+      border-left: 3px solid #00ff99;
+      transition: background-color 0.2s ease-in-out;
+    }
+
+    .service-item:hover {
+      background-color: rgba(0, 255, 153, 0.1);
+    }
+
+    .description {
+      display: none;
+      color: #b2f5d0;
+      margin-top: 0.3rem;
+      margin-left: 1rem;
+      transition: all 0.3s ease-in-out;
+    }
+
+    /* Mobile Styles */
+    @media (max-width: 768px) {
+      body {
+        flex-direction: column;
+        height: auto;
+      }
+
+      .sidebar {
+        width: 100%;
+        border-right: none;
+        border-bottom: 2px solid #00ff99;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        padding: 1rem;
+        text-align: center;
+      }
+
+      .sidebar .title {
+        width: 100%;
+        margin-bottom: 1rem;
+      }
+
+      .sidebar a {
+        margin: 0.5rem 1rem;
+      }
+
+      .content {
+        padding: 1.5rem;
+      }
+
+      h1 {
+        font-size: 1.25rem;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="sidebar">
+    <div class="title">#menu</div>
+    <a href="services.html">GET /services</a>
+    <a href="why-me.html">GET /why-me</a>
+    <a href="my-work.html">GET /my-work</a>
+    <a href="contact.html">POST /contact</a>
+  </div>
+
+  <div class="content">
+    <h1>// GET /services</h1>
+    <p>// What I offer</p>
+
+    <h2>🤖 AI & Automation</h2>
+    <div class="service-item" onclick="toggleDescription(this)">🧠 Custom ChatGPT Prompt Systems
+      <div class="description">Tailored prompt design to optimise ChatGPT usage for teams, personal productivity, and business operations.</div>
+    </div>
+    <div class="service-item" onclick="toggleDescription(this)">🔍 Research-as-a-Service (RaaS)
+      <div class="description">Detailed AI-assisted research briefs based on meta-analyses, systematic reviews, and academic insights — delivered fast and sharp.</div>
+    </div>
+    <div class="service-item" onclick="toggleDescription(this)">⚙️ Business Automation with OpenAI APIs
+      <div class="description">Automate routine workflows and integrate GPT tools into CRMs, spreadsheets, or backend systems to reduce manual work.</div>
+    </div>
+    <div class="service-item" onclick="toggleDescription(this)">💬 Chatbot Development (GPTs & Support Agents)
+      <div class="description">Create intelligent assistants using GPT-4 and API tools — for internal teams, customers, or product features.</div>
+    </div>
+    <div class="service-item" onclick="toggleDescription(this)">📱 AI-Powered App Development
+      <div class="description">Build powerful and user-centric mobile applications with customised GPT-driven functionalities.</div>
+    </div>
+
+    <h2>📊 Data & Analytics</h2>
+    <div class="service-item" onclick="toggleDescription(this)">🧼 Data Preprocessing
+      <div class="description">Clean, structure, and prepare your data for effective analysis and modeling.</div>
+    </div>
+    <div class="service-item" onclick="toggleDescription(this)">📈 Statistical Modeling & Forecasting
+      <div class="description">Build robust predictive models and forecasts using econometrics, GLMs, and time series analysis.</div>
+    </div>
+    <div class="service-item" onclick="toggleDescription(this)">🤖 Machine Learning Solutions
+      <div class="description">Implement ML models—including regression, classification, and clustering—to uncover patterns and drive strategic insights.</div>
+    </div>
+    <div class="service-item" onclick="toggleDescription(this)">📉 Data Visualisation & Insights
+      <div class="description">Transform complex datasets into intuitive dashboards and visual stories for decision-makers.</div>
+    </div>
+
+    <p style="margin-top: 3rem; color: #00ccff;">
+      👉 Ready to collaborate? <a href="contact.html" style="color: #ff66cc;">POST /contact</a>
+    </p>
+  </div>
+
+  <script>
+    function toggleDescription(el) {
+      const desc = el.querySelector('.description');
+      desc.style.display = (desc.style.display === 'block') ? 'none' : 'block';
+    }
+  </script>
+</body>
+</html>

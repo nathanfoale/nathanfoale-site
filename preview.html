@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Generated Portfolio</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Orbitron', sans-serif;
+      background: linear-gradient(to bottom, #1a1a1a, #000);
+      color: white;
+    }
+  </style>
+</head>
+<body>
+  <script>
+    const html = localStorage.getItem("generatedHTML");
+    if (html) {
+      document.write(html);
+    } else {
+      document.write("<p>No portfolio generated yet. Please go back and try again.</p>");
+    }
+  </script>
+</body>
+</html>

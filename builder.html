@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>👨‍💻 Personal Portfolio Builder</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      background: #0f0f0f;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+    }
+    .container {
+      display: flex;
+      gap: 30px;
+      width: 90%;
+      max-width: 1300px;
+    }
+    .form, .preview {
+      flex: 1;
+      padding: 20px;
+      background: #1f1f1f;
+      border-radius: 12px;
+    }
+    input, textarea {
+      width: 100%;
+      padding: 10px;
+      margin: 5px 0;
+      border-radius: 6px;
+      border: none;
+      background: #2c2c2c;
+      color: white;
+    }
+    button {
+      padding: 10px 20px;
+      margin: 10px 10px 0 0;
+      border-radius: 6px;
+      border: none;
+      cursor: pointer;
+      background-color: #00ff99;
+      color: black;
+      font-weight: bold;
+    }
+    h1, h2 {
+      color: #00ff99;
+    }
+    iframe {
+      border: none;
+      width: 100%;
+      height: 500px;
+      background: white;
+    }
+    label {
+      display: block;
+      margin-top: 8px;
+    }
+  </style>
+</head>
+<body>
+  <h1>👨‍💻 Personal Portfolio Builder</h1>
+  <div class="container">
+    <!-- Input Form -->
+    <div class="form">
+      <h2>Input Your Details</h2>
+      <input id="name" placeholder="Full Name" />
+      <input id="title" placeholder="Your Title (e.g. Data Scientist)" />
+      <textarea id="bio" placeholder="A short bio..." rows="3"></textarea>
+      <textarea id="education" placeholder="Education (e.g. BCom @ Monash)" rows="2"></textarea>
+      <textarea id="experience" placeholder="Experience (e.g. Apple - Specialist)" rows="2"></textarea>
+      <textarea id="projects" placeholder="Projects (e.g. Blackjack Simulator, Prompt AI)" rows="2"></textarea>
+      <textarea id="skills" placeholder="Skills (e.g. Python, R, Streamlit, MANIM)" rows="2"></textarea>
+      <textarea id="contact" placeholder="Contact Info (e.g. email, links)" rows="2"></textarea>
+      <input id="style" placeholder="Preferred vibe (e.g. neon, elegant, cyberpunk)" />
+
+      <h2>Choose Sections</h2>
+      <label><input type="checkbox" id="showBio" checked /> Include Bio</label>
+      <label><input type="checkbox" id="showEducation" checked /> Include Education</label>
+      <label><input type="checkbox" id="showExperience" checked /> Include Experience</label>
+      <label><input type="checkbox" id="showProjects" checked /> Include Projects</label>
+      <label><input type="checkbox" id="showSkills" checked /> Include Skills</label>
+      <label><input type="checkbox" id="showContact" checked /> Include Contact</label>
+
+      <div style="margin-top: 15px;">
+        <button onclick="generatePortfolio()">⚡ Generate</button>
+        <button onclick="openFullscreen()">🔍 Fullscreen Preview</button>
+        <button onclick="downloadHTML()">💾 Download HTML</button>
+        <button onclick="copyHTML()">📋 Copy Code</button>
+      </div>
+    </div>
+
+    <!-- Live Preview -->
+    <div class="preview">
+      <h2>Live Preview</h2>
+      <iframe id="previewFrame" sandbox="allow-same-origin allow-scripts" srcdoc="Fill out the form and click Generate"></iframe>
+    </div>
+  </div>
+
+  <script>
+    let currentHTML = '';
+
+    async function generatePortfolio() {
+      const data = {
+        name: document.getElementById("name").value,
+        title: document.getElementById("title").value,
+        bio: document.getElementById("bio").value,
+        education: document.getElementById("education").value,
+        experience: document.getElementById("experience").value,
+        projects: document.getElementById("projects").value,
+        skills: document.getElementById("skills").value,
+        contact: document.getElementById("contact").value,
+        style: document.getElementById("style").value,
+        include: {
+          bio: document.getElementById("showBio").checked,
+          education: document.getElementById("showEducation").checked,
+          experience: document.getElementById("showExperience").checked,
+          projects: document.getElementById("showProjects").checked,
+          skills: document.getElementById("showSkills").checked,
+          contact: document.getElementById("showContact").checked
+        }
+      };
+
+      try {
+        const res = await fetch("http://localhost:4000/generate", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(data),
+        });
+
+        const result = await res.json();
+        currentHTML = result.html;
+
+        const iframe = document.getElementById("previewFrame");
+        iframe.srcdoc = currentHTML;
+        localStorage.setItem("generatedHTML", currentHTML);
+      } catch (err) {
+        alert("⚠️ Failed to generate preview");
+        console.error(err);
+      }
+    }
+
+    function openFullscreen() {
+      const html = localStorage.getItem("generatedHTML");
+      if (!html) return alert("Please generate your portfolio first.");
+      const newWindow = window.open("", "_blank");
+      newWindow.document.write(html);
+      newWindow.document.close();
+    }
+
+    function downloadHTML() {
+      const blob = new Blob([currentHTML || "No portfolio generated"], { type: "text/html" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "portfolio.html";
+      a.click();
+    }
+
+    function copyHTML() {
+      navigator.clipboard.writeText(currentHTML || "No portfolio generated").then(() => {
+        alert("Copied HTML to clipboard!");
+      });
+    }
+
+    window.addEventListener("load", () => {
+      const saved = localStorage.getItem("generatedHTML");
+      if (saved) {
+        currentHTML = saved;
+        document.getElementById("previewFrame").srcdoc = saved;
+      }
+    });
+  </script>
+</body>
+</html>

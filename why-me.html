@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GET /why-me</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      background-color: #0d0d0d;
+      color: #00ff99;
+      font-family: 'Fira Code', monospace;
+      display: flex;
+      flex-direction: row;
+      height: 100vh;
+    }
+
+    .sidebar {
+      background-color: #1a1a1a;
+      padding: 2rem;
+      width: 220px;
+      border-right: 2px solid #00ff99;
+    }
+
+    .sidebar a {
+      display: block;
+      color: #00ccff;
+      margin-bottom: 1rem;
+      text-decoration: none;
+    }
+
+    .sidebar a:hover {
+      color: #00ff99;
+    }
+
+    .sidebar .title {
+      color: #ff66cc;
+      font-weight: bold;
+      margin-bottom: 2rem;
+    }
+
+    .content {
+      padding: 2rem;
+      flex-grow: 1;
+    }
+
+    h1 {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+    }
+
+    ul {
+      list-style-type: none;
+      padding-left: 0;
+    }
+
+    ul li::before {
+      content: "➤ ";
+      color: #00ff99;
+      margin-right: 0.5rem;
+    }
+
+    ul li {
+      margin-bottom: 15px;
+    }
+
+    /* ===== Mobile Styles ===== */
+    @media (max-width: 768px) {
+      body {
+        flex-direction: column;
+        height: auto;
+      }
+
+      .sidebar {
+        width: 100%;
+        border-right: none;
+        border-bottom: 2px solid #00ff99;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        padding: 1rem;
+        text-align: center;
+      }
+
+      .sidebar .title {
+        width: 100%;
+        margin-bottom: 1rem;
+      }
+
+      .sidebar a {
+        margin: 0.5rem 1rem;
+      }
+
+      .content {
+        padding: 1.5rem;
+      }
+
+      h1 {
+        font-size: 1.25rem;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="sidebar">
+    <div class="title">#menu</div>
+    <a href="services.html">GET /services</a>
+    <a href="why-me.html">GET /why-me</a>
+    <a href="my-work.html">GET /my-work</a>
+    <a href="contact.html">POST /contact</a>
+  </div>
+  <div class="content">
+    <h1>// GET /why-me</h1>
+    <p>// Why work with me?</p>
+
+    <p>I combine analytical rigor, coding fluency, and creative problem-solving to help people and businesses get results — fast.</p>
+
+    <ul>
+      <li>⚙️ Fluent at the intersection of business, statistics, and programming</li>
+      <li>📊 Formally trained in econometrics and statistical modeling for real-world decision-making</li>
+      <li>🤖 Experienced in prompt engineering with GPT-4o, Claude, DeepSeek, and other leading LLMs</li>
+      <li>💻 Proficient in Python, R, JavaScript, and full-stack development for versatile project execution</li>
+      <li>🚀 Skilled in automating workflows using OpenAI APIs and custom tools</li>
+      <li>🧪 Rapid prototyping, testing, and refining of models for high-impact insights</li>
+    </ul>
+
+    <p style="margin-top: 2rem; color: #00ccff;">
+      👉 Think we’re a match? <a href="contact.html" style="color: #ff66cc;">POST /contact</a>
+    </p>
+  </div>
+</body>
+</html>

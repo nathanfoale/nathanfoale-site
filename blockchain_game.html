@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Guess the Bitcoin Block Time! ⚡️</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/katex@0.13.11/dist/katex.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.11/dist/katex.min.css">
+<script src="https://cdn.jsdelivr.net/npm/tsparticles@2.11.1/tsparticles.bundle.min.js"></script>
+<style>
+  body {
+    margin: 0;
+    background: linear-gradient(135deg, #0d0d0d, #1a1a1a);
+    font-family: 'Space Grotesk', sans-serif;
+    color: #e0ffe0;
+    overflow: hidden;
+  }
+  #tsparticles {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+  }
+  canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    background: transparent;
+  }
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 1s ease-out forwards;
+  }
+  @keyframes fadeInUp {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  h1 { font-size: 2rem; color: #00ff99; z-index: 2; }
+  .gameArea {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+  }
+  input[type=number] { padding: 0.5rem; font-size: 1.2rem; border-radius: 8px; border: none; width: 80px; text-align: center; }
+  button { margin-top: 1rem; padding: 0.6rem 1.2rem; font-size: 1.2rem; border-radius: 8px; border: none; background: #00ff99; color: #0a0a0a; cursor: pointer; transition: 0.3s; }
+  button:hover { background: #00cc77; }
+  .info, .result, .timer { font-size: 1.2rem; z-index: 2; }
+  .hidden { display: none; }
+</style>
+</head>
+<body>
+
+<div id="tsparticles"></div>
+<canvas id="animationCanvas"></canvas>
+
+<div class="container">
+  <h1>Guess the Bitcoin Block Time! ⚡️</h1>
+
+  <div class="gameArea">
+    <div class="info" id="blockInfo">Fetching latest block...</div>
+
+    <div class="inputSection">
+      <label for="guess">Guess minutes until next block:</label><br>
+      <input type="number" id="guess" min="1" max="20" placeholder="10"><br>
+      <button onclick="makeGuess()" id="guessButton">Submit Guess</button>
+    </div>
+
+    <div class="timer" id="timer"></div>
+
+    <div class="result" id="result"></div>
+
+    <button onclick="resetGame()" id="resetButton" class="hidden">Play Again</button>
+  </div>
+</div>
+
+<script>
+// tsParticles config
+ tsParticles.load("tsparticles", {
+  background: { color: { value: "transparent" } },
+  fpsLimit: 60,
+  particles: {
+    number: { value: 50, density: { enable: true, area: 800 } },
+    color: { value: "#00ff99" },
+    opacity: { value: 0.2 },
+    size: { value: { min: 1, max: 3 } },
+    move: { enable: true, speed: 0.5, direction: "none", outMode: "bounce" }
+  }
+});
+
+const canvas = document.getElementById('animationCanvas');
+const ctx = canvas.getContext('2d');
+function resizeCanvas() {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+}
+window.addEventListener('resize', resizeCanvas);
+resizeCanvas();
+
+const lambda = 1/600;
+let animationStartTime = null;
+let animating = false;
+
+function drawAnimation() {
+  if (!animating) return;
+  const elapsed = (Date.now() - animationStartTime) / 1000;
+  const prob = 1 - Math.exp(-lambda * elapsed);
+
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  ctx.strokeStyle = '#666';
+  ctx.beginPath();
+  ctx.moveTo(100, canvas.height - 100);
+  ctx.lineTo(canvas.width - 100, canvas.height - 100);
+  ctx.moveTo(100, canvas.height - 100);
+  ctx.lineTo(100, 100);
+  ctx.stroke();
+
+  ctx.strokeStyle = '#00ff99';
+  ctx.beginPath();
+  for (let t = 0; t <= 1200; t += 10) {
+    let p = 1 - Math.exp(-lambda * t);
+    let x = 100 + (t / 1200) * (canvas.width - 200);
+    let y = (canvas.height - 100) - p * (canvas.height - 200);
+    if (t === 0) ctx.moveTo(x, y);
+    else ctx.lineTo(x, y);
+  }
+  ctx.stroke();
+
+  let currentX = 100 + (elapsed / 1200) * (canvas.width - 200);
+  let currentY = (canvas.height - 100) - prob * (canvas.height - 200);
+  ctx.fillStyle = '#ffffff';
+  ctx.beginPath();
+  ctx.arc(currentX, currentY, 8, 0, 2 * Math.PI);
+  ctx.fill();
+
+  ctx.fillStyle = '#ffffff';
+  ctx.font = '18px Space Grotesk, sans-serif';
+  ctx.fillText(`Elapsed: ${elapsed.toFixed(1)} sec`, 120, canvas.height - 60);
+  ctx.fillText(`P(block mined) ≈ ${(prob * 100).toFixed(2)}%`, 120, canvas.height - 30);
+
+  requestAnimationFrame(drawAnimation);
+}
+
+let latestBlock = null;
+let guessMinutes = null;
+let guessTimestamp = null;
+let checkingInterval = null;
+let timerInterval = null;
+
+async function fetchLatestBlock() {
+  const res = await fetch('https://blockchain.info/q/getblockcount');
+  const blockNumber = await res.text();
+  latestBlock = parseInt(blockNumber);
+  document.getElementById('blockInfo').innerText = `Current Block: #${latestBlock}`;
+}
+
+function startTimer() {
+  const timerEl = document.getElementById('timer');
+  const startTime = Date.now();
+
+  timerInterval = setInterval(() => {
+    const now = Date.now();
+    const elapsedSeconds = Math.floor((now - startTime) / 1000);
+    const minutes = Math.floor(elapsedSeconds / 60);
+    const seconds = elapsedSeconds % 60;
+    timerEl.innerText = `⏳ Elapsed: ${minutes}m ${seconds}s`;
+  }, 1000);
+}
+
+async function checkNewBlock() {
+  const res = await fetch('https://blockchain.info/q/getblockcount');
+  const blockNumber = await res.text();
+  const currentBlock = parseInt(blockNumber);
+
+  if (currentBlock > latestBlock) {
+    clearInterval(checkingInterval);
+    clearInterval(timerInterval);
+    animating = false;
+    const now = Date.now();
+    const elapsedMinutes = (now - guessTimestamp) / 60000;
+    const difference = Math.abs(elapsedMinutes - guessMinutes).toFixed(2);
+
+    let message = '';
+    if (difference <= 1) message = "🔥 You're a mining oracle!";
+    else if (difference <= 3) message = "🚀 Very close!";
+    else message = "💀 Better luck next time!";
+
+    document.getElementById('result').innerHTML = `🎉 New block mined!<br>Your guess: ${guessMinutes} min<br>Actual time: ${elapsedMinutes.toFixed(2)} min<br>Difference: ${difference} min<br><strong>${message}</strong>`;
+
+    document.getElementById('resetButton').classList.remove('hidden');
+    document.getElementById('guessButton').disabled = true;
+    latestBlock = currentBlock;
+  }
+}
+
+function makeGuess() {
+  guessMinutes = parseFloat(document.getElementById('guess').value);
+  if (isNaN(guessMinutes) || guessMinutes <= 0) {
+    alert("Please enter a valid number between 1 and 20.");
+    return;
+  }
+  guessTimestamp = Date.now();
+  document.getElementById('result').innerText = "Waiting for next block...";
+
+  if (checkingInterval) clearInterval(checkingInterval);
+  if (timerInterval) clearInterval(timerInterval);
+
+  animationStartTime = Date.now();
+  animating = true;
+  drawAnimation();
+
+  startTimer();
+  checkingInterval = setInterval(checkNewBlock, 60000);
+}
+
+function resetGame() {
+  document.getElementById('result').innerText = "";
+  document.getElementById('timer').innerText = "";
+  document.getElementById('resetButton').classList.add('hidden');
+  document.getElementById('guessButton').disabled = false;
+  document.getElementById('guess').value = "";
+  animating = false;
+  fetchLatestBlock();
+}
+
+fetchLatestBlock();
+</script>
+
+</body>
+</html>

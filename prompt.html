@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nathan Foale | AI & Prompt Engineering</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      background-color: #0d0d0d;
+      color: #00ff99;
+      font-family: 'Fira Code', monospace;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      overflow: hidden;
+      text-align: center;
+      padding: 0 1rem;
+    }
+    h1 {
+  font-size: clamp(1.5rem, 6vw, 2.5rem);
+  margin-bottom: 2rem;
+  z-index: 2;
+  color: #00ff99;
+  border-right: .15em solid #00ff99;
+  max-width: 90%;
+  overflow-wrap: break-word;
+  word-break: break-word;
+  animation: typing 4.5s steps(45, end) forwards, blink-caret .75s step-end 7;
+  text-shadow: 0 0 3px #00ff99, 0 0 5px #00ff99;
+  margin-left: auto;
+  margin-right: auto;
+  display: inline-block;
+}
+
+@keyframes typing {
+  from { max-width: 0; }
+  to { max-width: 90%; }
+}
+
+    
+
+    @keyframes blink-caret {
+      from,
+      to {
+        border-color: transparent
+      }
+
+      50% {
+        border-color: #00ff99;
+      }
+    }
+
+    .menu {
+      z-index: 2;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+    }
+
+    .menu a {
+      padding: 12px 24px;
+      border: 2px solid #00ff99;
+      border-radius: 5px;
+      text-decoration: none;
+      color: #00ff99;
+      font-weight: bold;
+      font-size: 1rem;
+      transition: 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .menu a::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background-color: #00ff99;
+      opacity: 0.2;
+      transition: left 0.3s ease;
+      z-index: 1;
+    }
+
+    .menu a:hover::before {
+      left: 0;
+    }
+
+    .menu a:hover {
+      background-color: rgba(0, 255, 153, 0.1);
+      box-shadow: 0 0 15px rgba(0, 255, 153, 0.7);
+    }
+
+    #code-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      overflow: hidden;
+      color: rgba(0, 255, 153, 0.03);
+      font-size: 1rem;
+      white-space: pre;
+      pointer-events: none;
+    }
+
+    @media (max-width: 480px) {
+      .menu {
+        flex-direction: column;
+        gap: 15px;
+      }
+
+      .menu a {
+        width: 80%;
+        font-size: 0.95rem;
+      }
+    }
+
+    /* Base Heading Styles */
+.desktop-heading,
+.mobile-heading {
+  font-size: clamp(1.5rem, 6vw, 2.5rem);
+  margin-bottom: 2rem;
+  z-index: 2;
+  color: #00ff99;
+  border-right: 0.15em solid #00ff99;
+  text-shadow: 0 0 3px #00ff99, 0 0 5px #00ff99;
+  font-family: 'Fira Code', monospace;
+  overflow: hidden;
+  display: inline-block;
+  animation: typing 4.5s steps(45, end) forwards, blink-caret 0.75s step-end 7;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 90%;
+  white-space: nowrap;
+}
+
+/* Hide mobile heading by default */
+.mobile-heading {
+  display: none;
+}
+
+/* Show mobile heading + hide desktop on narrow screens */
+@media (max-width: 768px) {
+  .desktop-heading {
+    display: none;
+  }
+  .mobile-heading {
+    display: block;
+    white-space: normal;
+    word-break: break-word;
+  }
+}
+
+/* Typing animation keyframes */
+@keyframes typing {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+@keyframes blink-caret {
+  from, to { border-color: transparent }
+  50% { border-color: #00ff99; }
+}
+  </style>
+</head>
+
+<body>
+  <div id="code-bg"></div>
+
+  <h1 class="desktop-heading">// Nathan Foale: Prompt Developer</h1>
+  <h1 class="mobile-heading">// Nathan Foale:<br>Prompt Developer</h1>
+  
+  <div class="menu">
+    <a href="services.html">GET /services</a>
+    <a href="why-me.html">GET /why-me</a>
+    <a href="my-work.html">GET /my-work</a>
+    <a href="contact.html">POST /contact</a>
+  </div>
+
+  <script>
+    const codeLines = [
+      'const engineer = new PromptDeveloper("Nathan");',
+      'engineer.build("customGPTs");',
+      'engineer.optimize("AI workflows");',
+      'engineer.automate("tasks");',
+      'engineer.analyze("text, sentiment, stats");',
+      'engineer.deploy("OpenAI API solutions");'
+    ];
+
+    const codeBg = document.getElementById("code-bg");
+    let currentLine = 0;
+
+    function renderCode() {
+      if (codeBg.scrollHeight > window.innerHeight * 2) {
+        codeBg.innerHTML = '';
+      }
+      codeBg.innerHTML += codeLines[currentLine % codeLines.length] + '\n';
+      currentLine++;
+    }
+
+    setInterval(renderCode, 300);
+  </script>
+</body>
+
+</html>
