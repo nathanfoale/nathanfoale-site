@@ -1,3 +1,21 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background: #000;
+  overflow-x: hidden;
+}
+
+/* Make particles fill the REAL mobile viewport */
+#particles-js {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;   /* fallback */
+  height: 100dvh;  /* modern fix */
+  z-index: -1;
+}
 /* keep particles behind everything */
 #particles-js {
   position: fixed;
