@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-P6E7QEZ6HX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-P6E7QEZ6HX');
+  </script> 
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <title>Nathan Foale - SimuFi</title>
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    html {
+      height: 100%;
+    }
+    body {
+      font-family: 'Orbitron', sans-serif;
+      background: linear-gradient(to bottom, rgba(59, 24, 55, 1), rgba(0, 0, 0, 1));
+      height: 100%;
+      min-height: 100vh;
+      overflow: hidden;
+      color: white;
+      text-align: center;
+      position: relative;
+    }
+    #particles-js {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      z-index: 1;
+      background: inherit;
+      background-size: cover;
+    }
+    #particles-js::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.6));
+      z-index: 0;
+    }
+    h1 {
+      position: absolute;
+      top: 22%;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 50px;
+      max-width: 90vw;
+      color: white;
+      font-family: 'Orbitron', sans-serif;
+      text-shadow: 2px 2px 5px #000;
+      z-index: 2;
+    }
+    .projects-container {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      align-items: center;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 3;
+    }
+    .projects-container a {
+      font-size: 16px;
+      text-transform: uppercase;
+      color: white;
+      font-weight: bold;
+      background: rgba(0, 0, 0, 0.65);
+      padding: 14px 28px;
+      border-radius: 25px;
+      text-decoration: none;
+      opacity: 0.85;
+      transition: all 0.3s ease-in-out;
+      backdrop-filter: blur(5px);
+    }
+    .projects-container a:hover {
+      background-color: #734d8a;
+      opacity: 1;
+      box-shadow: 0 8px 14px rgba(0, 0, 0, 0.8);
+      transform: scale(1.05);
+    }
+    #tap-prompt {
+      position: absolute;
+      bottom: 22%;
+      width: 100%;
+      font-style: italic;
+      opacity: 0.5;
+      animation: blinker 1.5s linear infinite;
+      font-size: 1.1rem;
+      z-index: 3;
+      text-shadow: 1px 1px 2px #000;
+    }
+    @keyframes blinker {
+      50% { opacity: 0; }
+    }
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 30px;
+        top: 24%;
+      }
+      .projects-container {
+        top: 50%;
+      }
+      .projects-container a {
+        font-size: 14px;
+        padding: 12px 24px;
+      }
+      #tap-prompt {
+        bottom: 24%;
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div id="particles-js">
+    <div class="container">
+      <h1>SIMUFI</h1>
+      <div class="projects-container">
+<div class="projects-container">
+  <a href="https://v0-simufi-pitch-deck.vercel.app/" target="_blank">
+    PITCH DECK
+  </a>
+
+  <a href="simufi-concept.html">
+    CONCEPT SITE
+  </a>
+
+  <a href="index.html">
+    HOME
+  </a>
+</div>
+      </div>
+      <div id="tap-prompt">
+        <p>[tap/click screen]</p>
+      </div>
+    </div>
+    <canvas class="particles-js-canvas-el" style="width: 100%; height: 100%;"></canvas>
+  </div>
+  <script src="particles.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
