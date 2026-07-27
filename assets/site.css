@@ -3033,6 +3033,20 @@ button {
   font-size: 20px;
 }
 
+.blog-post-row--coming-soon {
+  cursor: default;
+}
+
+.blog-post-row--coming-soon:hover {
+  padding-right: 8px;
+  padding-left: 8px;
+  background: transparent;
+}
+
+.blog-post-row--coming-soon .post-type {
+  color: rgba(57, 255, 157, 0.48);
+}
+
 .blog-footer {
   display: flex;
   align-items: center;
