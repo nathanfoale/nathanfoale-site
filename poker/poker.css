@@ -552,7 +552,7 @@ button {
 
 .result-card {
   display: grid;
-  grid-template-rows: minmax(330px, 0.95fr) auto;
+  grid-template-rows: minmax(520px, 0.95fr) auto;
   overflow: hidden;
   border: 1px solid var(--line);
   border-radius: 17px;
@@ -561,7 +561,7 @@ button {
 
 .result-card-visual {
   position: relative;
-  min-height: 330px;
+  min-height: 520px;
   overflow: hidden;
   border-bottom: 1px solid var(--line);
   background:
@@ -575,7 +575,8 @@ button {
   object-fit: cover;
 }
 
-.result-card--online .result-card-visual img {
+.result-card--online .result-card-visual img,
+.result-card--live .result-card-visual img {
   object-fit: contain;
 }
 
@@ -618,6 +619,10 @@ button {
   padding: 11px 12px;
   border-right: 1px solid var(--line);
   border-bottom: 1px solid var(--line);
+}
+
+.result-card--live .result-card-copy dl div:last-child {
+  grid-column: 1 / -1;
 }
 
 .result-card-copy dt {
@@ -1238,11 +1243,11 @@ button {
   }
 
   .result-card {
-    grid-template-rows: minmax(280px, 0.9fr) auto;
+    grid-template-rows: minmax(440px, 0.9fr) auto;
   }
 
   .result-card-visual {
-    min-height: 280px;
+    min-height: 440px;
   }
 
   .trainer-controls {
