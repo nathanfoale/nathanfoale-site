@@ -12,7 +12,7 @@ HOW TO UPLOAD
    - www
    - htdocs
 3. Upload the CONTENTS of the "nathanfoale-website" folder into that root.
-4. Keep the about, assets, projects, and prompt folders exactly as they are.
+4. Keep the about, assets, blog, projects, and prompt folders exactly as they are.
 5. Confirm that index.html is directly inside the website root.
 
 EXPECTED STRUCTURE
@@ -22,6 +22,13 @@ public_html/
   og.png
   about/
     index.html
+  blog/
+    index.html
+    morality/
+    religion/
+    faith/
+    free-will/
+    western-anti-westernism/
   assets/
     site.css
     site.js
@@ -50,7 +57,7 @@ index.html file with the final domain.
 NOTES
 
 - Google Analytics ID G-P6E7QEZ6HX is included on every page.
-- Blog opens the supplied Google Sites URL.
+- Blog is hosted natively under /blog/ with five individual essay pages.
 - About contains Nathan's education, interests, and current areas of focus.
 - Block Time is available under Projects. It uses a local probability
   simulation and optionally reads the current block height from mempool.space.

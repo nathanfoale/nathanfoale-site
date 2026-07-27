@@ -191,4 +191,16 @@
       }
     });
   });
+
+  const readingProgress = document.querySelector("[data-reading-progress]");
+  if (readingProgress) {
+    const updateReadingProgress = () => {
+      const scrollable = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = scrollable > 0 ? Math.min(1, window.scrollY / scrollable) : 0;
+      readingProgress.style.transform = `scaleX(${progress})`;
+    };
+    updateReadingProgress();
+    window.addEventListener("scroll", updateReadingProgress, { passive: true });
+    window.addEventListener("resize", updateReadingProgress);
+  }
 })();
