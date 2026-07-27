@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <title>Block Time — Bitcoin Probability Game</title>
+    <meta name="description" content="Predict when the next Bitcoin block will arrive in Nathan Foale's fast-paced probability game.">
+    <meta name="theme-color" content="#070a08">
+    <link rel="canonical" href="https://nathanfoale.com/projects/blockchain-game/">
+    <meta property="og:title" content="Block Time — Bitcoin Probability Game">
+    <meta property="og:description" content="Can you predict the next Bitcoin block? Make your call, watch the network clock and chase a perfect score.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://nathanfoale.com/projects/blockchain-game/">
+    <meta property="og:image" content="https://nathanfoale.com/projects/blockchain-game/og.png">
+    <meta property="og:image:width" content="1672">
+    <meta property="og:image:height" content="941">
+    <meta property="og:image:alt" content="Block Time, a Bitcoin probability game, shown with a neon probability curve and glowing Bitcoin block.">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Block Time — Bitcoin Probability Game">
+    <meta name="twitter:description" content="Can you predict the next Bitcoin block?">
+    <meta name="twitter:image" content="https://nathanfoale.com/projects/blockchain-game/og.png">
+    <link rel="stylesheet" href="../../assets/site.css">
+    <link rel="stylesheet" href="game.css">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-P6E7QEZ6HX"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag("js", new Date());
+      gtag("config", "G-P6E7QEZ6HX");
+    </script>
+  </head>
+  <body class="game-page">
+    <main class="game-shell">
+      <canvas class="particle-canvas" data-particles aria-hidden="true"></canvas>
+      <div class="grain" aria-hidden="true"></div>
+      <div class="game-glow" aria-hidden="true"></div>
+
+      <header class="game-topbar">
+        <a class="back-link" href="../"><span aria-hidden="true">←</span> Projects</a>
+        <div class="network-badge" data-network>
+          <span class="network-dot" aria-hidden="true"></span>
+          <span data-network-label>Connecting to Bitcoin network…</span>
+        </div>
+        <p>NF / EXPERIMENT 04</p>
+      </header>
+
+      <section class="game-layout" aria-labelledby="game-title">
+        <div class="game-copy">
+          <p class="game-kicker">Probability lab / Bitcoin</p>
+          <h1 id="game-title">BLOCK<br><span>TIME</span></h1>
+          <p class="game-lead">Predict how many minutes the network will take to mine its next block. The average is ten. The next one could arrive at any moment.</p>
+
+          <div class="game-facts" aria-label="Game statistics">
+            <div>
+              <span>Target cadence</span>
+              <strong>10.0 min</strong>
+            </div>
+            <div>
+              <span>Chance by your guess</span>
+              <strong data-odds>63.2%</strong>
+            </div>
+            <div>
+              <span>Best score</span>
+              <strong data-high-score>0000</strong>
+            </div>
+          </div>
+
+          <form class="guess-card" data-guess-form>
+            <div class="guess-heading">
+              <div>
+                <label for="guess-input">Your prediction</label>
+                <p>Choose 1–30 simulated minutes</p>
+              </div>
+              <div class="guess-value">
+                <input id="guess-input" data-guess-input type="number" min="1" max="30" step="1" value="10" inputmode="numeric">
+                <span>min</span>
+              </div>
+            </div>
+
+            <input class="guess-range" data-guess-range type="range" min="1" max="30" step="1" value="10" aria-label="Predicted minutes until the next block">
+            <div class="range-labels" aria-hidden="true"><span>1</span><span>15</span><span>30</span></div>
+
+            <div class="quick-picks" aria-label="Quick predictions">
+              <button type="button" data-pick="5">5 min</button>
+              <button type="button" data-pick="10" aria-pressed="true">10 min</button>
+              <button type="button" data-pick="15">15 min</button>
+            </div>
+
+            <button class="launch-button" data-launch type="submit">
+              <span>Lock prediction</span>
+              <span aria-hidden="true">↗</span>
+            </button>
+          </form>
+        </div>
+
+        <div class="game-board">
+          <div class="board-header">
+            <div>
+              <span class="board-label">Network clock</span>
+              <strong data-clock>00:00.0</strong>
+            </div>
+            <div class="round-state" data-round-state>
+              <span aria-hidden="true"></span>
+              Ready for prediction
+            </div>
+          </div>
+
+          <figure class="probability-chart">
+            <canvas data-chart aria-label="Exponential probability curve for Bitcoin block arrival times"></canvas>
+            <figcaption>
+              <span>Likelihood</span>
+              <span>Minutes →</span>
+            </figcaption>
+          </figure>
+
+          <div class="mining-track" aria-hidden="true">
+            <div class="mining-progress" data-progress></div>
+            <div class="block-node" data-block-node>₿</div>
+          </div>
+
+          <div class="board-footer">
+            <div>
+              <span>Current guess</span>
+              <strong><span data-board-guess>10</span> min</strong>
+            </div>
+            <div>
+              <span>Round</span>
+              <strong data-round-count>01</strong>
+            </div>
+            <div>
+              <span>Streak</span>
+              <strong><span data-streak>0</span>×</strong>
+            </div>
+          </div>
+
+          <section class="result-card" data-result hidden aria-live="polite">
+            <p class="result-kicker" data-result-kicker>Block found</p>
+            <div class="result-score">
+              <strong data-score>0000</strong>
+              <span>points</span>
+            </div>
+            <p data-result-copy></p>
+            <div class="result-comparison">
+              <span>Your call <strong data-result-guess>10.0 min</strong></span>
+              <span>Block time <strong data-result-actual>8.4 min</strong></span>
+              <span>Difference <strong data-result-difference>1.6 min</strong></span>
+            </div>
+            <button class="again-button" data-again type="button">Play another round <span aria-hidden="true">↻</span></button>
+          </section>
+        </div>
+      </section>
+
+      <footer class="game-footer">
+        <p><span aria-hidden="true">ⓘ</span> Each round samples Bitcoin’s exponential waiting-time model and compresses it into a few seconds.</p>
+        <p>Built by Nathan Foale</p>
+      </footer>
+
+      <div class="sr-only" data-live-status aria-live="polite"></div>
+    </main>
+
+    <script src="../../assets/site.js"></script>
+    <script src="game.js"></script>
+  </body>
+</html>

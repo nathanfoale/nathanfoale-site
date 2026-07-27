@@ -25,6 +25,11 @@ public_html/
     site.js
   projects/
     index.html
+    blockchain-game/
+      index.html
+      game.css
+      game.js
+      og.png
   prompt/
     index.html
     services/
@@ -44,7 +49,9 @@ NOTES
 
 - Google Analytics ID G-P6E7QEZ6HX is included on every page.
 - Blog opens the supplied Google Sites URL.
-- SimuFi, Blockchain Game, My Work, and Contact display "coming soon" until
-  their page files are supplied.
+- Block Time is available under Projects. It uses a local probability
+  simulation and optionally reads the current block height from mempool.space.
+- SimuFi, My Work, and Contact display "coming soon" until their page files
+  are supplied.
 - The site uses Google Fonts, so internet access is needed to load those fonts.
   The website still works with system fonts if Google Fonts is unavailable.
