@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title">
+  <title id="title">Nathan Foale constellation favicon</title>
+  <defs>
+    <linearGradient id="bg" x1="7" y1="4" x2="58" y2="61" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#1c1823"/>
+      <stop offset="1" stop-color="#091511"/>
+    </linearGradient>
+    <linearGradient id="mark" x1="17" y1="17" x2="48" y2="48" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#dffff2"/>
+      <stop offset="1" stop-color="#42f59b"/>
+    </linearGradient>
+  </defs>
+
+  <rect x="2" y="2" width="60" height="60" rx="15" fill="url(#bg)"/>
+  <rect x="2.75" y="2.75" width="58.5" height="58.5" rx="14.25"
+        fill="none" stroke="#42f59b" stroke-opacity=".32" stroke-width="1.5"/>
+
+  <!-- A geometric N drawn like one of the site's connected constellations. -->
+  <path d="M17 46V18L47 46V18"
+        fill="none" stroke="url(#mark)" stroke-width="6"
+        stroke-linecap="round" stroke-linejoin="round"/>
+
+  <circle cx="17" cy="18" r="3.25" fill="#dffff2"/>
+  <circle cx="47" cy="46" r="3.25" fill="#42f59b"/>
+  <circle cx="47" cy="18" r="2.25" fill="#dffff2"/>
+</svg>

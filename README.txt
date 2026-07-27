@@ -19,6 +19,7 @@ EXPECTED STRUCTURE
 
 public_html/
   index.html
+  favicon.svg
   og.png
   about/
     index.html
