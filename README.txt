@@ -12,7 +12,7 @@ HOW TO UPLOAD
    - www
    - htdocs
 3. Upload the CONTENTS of the "nathanfoale-website" folder into that root.
-4. Keep the assets, projects, and prompt folders exactly as they are.
+4. Keep the about, assets, projects, and prompt folders exactly as they are.
 5. Confirm that index.html is directly inside the website root.
 
 EXPECTED STRUCTURE
@@ -20,6 +20,8 @@ EXPECTED STRUCTURE
 public_html/
   index.html
   og.png
+  about/
+    index.html
   assets/
     site.css
     site.js
@@ -49,9 +51,10 @@ NOTES
 
 - Google Analytics ID G-P6E7QEZ6HX is included on every page.
 - Blog opens the supplied Google Sites URL.
+- About contains Nathan's education, interests, and current areas of focus.
 - Block Time is available under Projects. It uses a local probability
   simulation and optionally reads the current block height from mempool.space.
-- SimuFi, My Work, and Contact display "coming soon" until their page files
-  are supplied.
+- SimuFi appears under Projects and displays "coming soon" until its page is
+  supplied.
 - The site uses Google Fonts, so internet access is needed to load those fonts.
   The website still works with system fonts if Google Fonts is unavailable.
