@@ -1,0 +1,244 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <title>Poker Corner — Nathan Foale</title>
+    <meta name="description" content="Nathan Foale’s poker results, session tracking and interactive Texas Hold’em strategy trainer.">
+    <meta property="og:title" content="Poker Corner — Nathan Foale">
+    <meta property="og:description" content="The felt, the maths and the decisions between.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://nathanfoale.com/poker/">
+    <meta property="og:image" content="https://nathanfoale.com/og.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="canonical" href="https://nathanfoale.com/poker/">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="poker.css">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-P6E7QEZ6HX"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag("js", new Date());
+      gtag("config", "G-P6E7QEZ6HX");
+    </script>
+  </head>
+  <body>
+    <main class="poker-shell">
+      <div class="poker-grid" aria-hidden="true"></div>
+      <div class="poker-grain" aria-hidden="true"></div>
+
+      <nav class="poker-nav" aria-label="Poker Corner navigation">
+        <a class="poker-back" href="../">← Portfolio</a>
+        <p><span>NF</span> / Poker Corner</p>
+        <div>
+          <a href="#results">Results</a>
+          <a href="#trainer">Trainer</a>
+          <a href="#lab">Poker Lab</a>
+        </div>
+      </nav>
+
+      <section class="poker-hero" aria-labelledby="poker-title">
+        <div class="poker-hero-copy">
+          <p class="poker-kicker"><span aria-hidden="true">●</span> Personal study / Strategy lab</p>
+          <h1 id="poker-title">POKER<br><span>CORNER.</span></h1>
+          <p>A record of results from the felt, the tools I use to study the game, and an interactive space for thinking through decisions under uncertainty.</p>
+          <div class="poker-hero-actions">
+            <a href="#trainer">Try the trainer <span aria-hidden="true">↓</span></a>
+            <a href="#results">View results <span aria-hidden="true">→</span></a>
+          </div>
+          <ul class="poker-tags" aria-label="Poker Corner topics">
+            <li>4-Max NLH</li>
+            <li>Range equity</li>
+            <li>Monte Carlo</li>
+            <li>Decision training</li>
+          </ul>
+        </div>
+
+        <div class="poker-table-wrap" aria-label="Stylised four-handed poker table">
+          <div class="poker-table">
+            <div class="table-player table-player--utg"><small>UTG</small><strong>Villain 3</strong><span>1,940</span></div>
+            <div class="table-player table-player--sb"><small>SB</small><strong>Villain 1</strong><span>1,990</span></div>
+            <div class="table-player table-player--bb"><small>BB</small><strong>Villain 2</strong><span>1,980</span></div>
+            <div class="table-player table-player--hero"><small>BU · D</small><strong>Hero</strong><span>2,000</span></div>
+            <div class="table-pot"><small>Pot</small><strong>150</strong></div>
+            <div class="table-cards" aria-label="Queen of clubs and Jack of clubs"><span>Q<b>♣</b></span><span>J<b>♣</b></span></div>
+            <div class="table-chip table-chip--one"></div>
+            <div class="table-chip table-chip--two"></div>
+            <div class="table-chip table-chip--three"></div>
+          </div>
+          <p><span>Current spot</span> BU facing a 3× UTG open</p>
+        </div>
+      </section>
+
+      <section class="poker-strip" aria-label="Poker Corner summary">
+        <p><span>01</span> Real results</p>
+        <p><span>02</span> Session tracking</p>
+        <p><span>03</span> Interactive trainer</p>
+        <p><span>04</span> Future poker tools</p>
+      </section>
+
+      <section class="poker-section" id="results" aria-labelledby="results-title">
+        <header class="poker-section-heading">
+          <div>
+            <p class="poker-kicker">Results / From the felt</p>
+            <h2 id="results-title">PLAY. TRACK.<br><span>LEARN.</span></h2>
+          </div>
+          <p>I record outcomes to separate memorable hands from actual performance—and to make the swings visible rather than intuitive.</p>
+        </header>
+
+        <div class="result-feature">
+          <figure>
+            <img src="assets/wednesday-night-result.jpg" alt="Wednesday Night tournament results board showing Nathan Foale in third place" width="2048" height="1032">
+            <figcaption><span>Crown Wednesday Night / 21 May 2025</span><span>03 / 107</span></figcaption>
+          </figure>
+          <div class="result-feature-copy">
+            <p>Best recorded tournament result</p>
+            <h3>3RD PLACE</h3>
+            <dl>
+              <div><dt>Prize</dt><dd>$3,145</dd></div>
+              <div><dt>Field</dt><dd>107</dd></div>
+              <div><dt>Buy-in</dt><dd>$300</dd></div>
+              <div><dt>Prize pool</dt><dd>$26,215</dd></div>
+            </dl>
+            <p class="result-note">A deep run in the Crown Wednesday Night no-limit event, finishing third from 107 entries.</p>
+          </div>
+        </div>
+
+        <div class="tracker-grid">
+          <div class="tracker-summary">
+            <p class="poker-kicker">Tracker snapshot</p>
+            <h3>THE NUMBERS<br>BEHIND THE SESSIONS.</h3>
+            <div class="tracker-stats">
+              <p><span>Tournament profit</span><strong>$2,395</strong></p>
+              <p><span>Cash-game profit</span><strong>$1,591</strong></p>
+              <p><span>MTT ROI</span><strong>342.14%</strong></p>
+              <p><span>Cash hours</span><strong>75</strong></p>
+              <p><span>Cash sessions</span><strong>18</strong></p>
+              <p><span>Dollars / hour</span><strong>$21.21</strong></p>
+            </div>
+            <small>Snapshot from the supplied session tracker. Results are historical and do not represent expected future performance.</small>
+          </div>
+          <figure class="tracker-image">
+            <img src="assets/session-tracker.png" alt="Poker tournament and cash-game session tracker with cumulative profit chart" width="1202" height="1304">
+            <figcaption>Session log / tournament + cash</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section class="poker-section trainer-section" id="trainer" aria-labelledby="trainer-title">
+        <header class="poker-section-heading">
+          <div>
+            <p class="poker-kicker">Interactive demo / Browser trainer</p>
+            <h2 id="trainer-title">MAKE THE<br><span>DECISION.</span></h2>
+          </div>
+          <p>A browser interpretation of the Python CLI trainer I built to practise positional awareness, pot odds, range equity and realistic sizing.</p>
+        </header>
+
+        <div class="trainer-layout" data-poker-trainer>
+          <aside class="trainer-controls">
+            <div>
+              <p class="trainer-label">Opponent profile</p>
+              <div class="profile-switch" role="group" aria-label="Opponent profile">
+                <button type="button" data-profile="tight" class="is-active">Tight</button>
+                <button type="button" data-profile="loose">Loose</button>
+                <button type="button" data-profile="maniac">Maniac</button>
+              </div>
+            </div>
+            <div class="trainer-progress">
+              <p class="trainer-label">Training session</p>
+              <strong><span data-decision-current>01</span> / 03</strong>
+              <div><span data-progress-bar></span></div>
+            </div>
+            <dl class="trainer-session-stats">
+              <div><dt>Decisions</dt><dd data-stat-decisions>0</dd></div>
+              <div><dt>Accuracy</dt><dd data-stat-accuracy>—</dd></div>
+              <div><dt>VPIP</dt><dd data-stat-vpip>0%</dd></div>
+              <div><dt>PFR</dt><dd data-stat-pfr>0%</dd></div>
+            </dl>
+            <p class="trainer-profile-note" data-profile-note>Tight opponents enter fewer pots and continue with stronger ranges.</p>
+          </aside>
+
+          <div class="trainer-terminal">
+            <header>
+              <div><span></span><span></span><span></span></div>
+              <p>poker_trainer.py — interactive session</p>
+              <b data-terminal-status>AWAITING ACTION</b>
+            </header>
+            <div class="terminal-game">
+              <p class="terminal-hand-number">--- Starting Hand <span data-hand-number>#8</span> ---</p>
+              <div class="terminal-table-line" data-stack-line>Hero(BU)D: 2000 | Villain 1(SB): 1990 | Villain 2(BB): 1980 | Villain 3(UTG): 1940</div>
+              <div class="terminal-board">
+                <p>Pot: <strong data-pot>150</strong> <i>|</i> Board: <span data-board>--</span></p>
+                <p>Your Hand: <span class="terminal-hole-cards" data-hole-cards><b class="club">Q♣</b> <b class="club">J♣</b></span></p>
+                <p>Equity vs Range: <span data-equity>15.5% Win / 0.8% Tie / 83.7% Lose</span></p>
+              </div>
+              <p class="terminal-action-copy" data-action-copy>Action on Hero (BU) · Stack: 2000 · To Call: 60</p>
+              <p class="terminal-prompt">Your options:</p>
+              <div class="terminal-options" data-action-options></div>
+              <div class="trainer-feedback" data-feedback aria-live="polite">
+                <span>&gt;</span>
+                <p>Choose an action to receive strategic feedback.</p>
+              </div>
+              <button class="next-spot" type="button" data-next-spot hidden>Next spot <span aria-hidden="true">→</span></button>
+            </div>
+          </div>
+        </div>
+
+        <div class="trainer-features">
+          <article><span>01</span><h3>Realistic 4-Max</h3><p>BU, SB, BB and UTG positions with correct action order and blind logic.</p></article>
+          <article><span>02</span><h3>Range Equity</h3><p>Monte Carlo equity against estimated ranges rather than random cards.</p></article>
+          <article><span>03</span><h3>Opponent Profiles</h3><p>Tight, loose and maniac tendencies change ranges and fold equity.</p></article>
+          <article><span>04</span><h3>Practical Sizing</h3><p>Minimum, half-pot, three-quarter-pot, pot and all-in options.</p></article>
+          <article><span>05</span><h3>Session Metrics</h3><p>VPIP, PFR, aggression factor and net results across the session.</p></article>
+          <article><span>06</span><h3>CLI Roots</h3><p>Inspired directly by the 1,400-line Python and Treys trainer.</p></article>
+        </div>
+      </section>
+
+      <section class="poker-section poker-lab" id="lab" aria-labelledby="lab-title">
+        <header class="poker-section-heading">
+          <div>
+            <p class="poker-kicker">Poker Lab / Next builds</p>
+            <h2 id="lab-title">WHAT COULD<br><span>COME NEXT.</span></h2>
+          </div>
+          <p>The trainer is the first playable piece. These modules could turn Poker Corner into a deeper strategy laboratory.</p>
+        </header>
+        <div class="lab-grid">
+          <article class="lab-card lab-card--primary">
+            <div><span>01 / PLAY</span><b>In development</b></div>
+            <h3>Play against the computer</h3>
+            <p>A complete browser table with stochastic opponents, rotating positions, independent stacks and post-flop play.</p>
+            <div class="mini-table" aria-hidden="true"><i></i><i></i><i></i><i></i><strong>A♠ K♦</strong></div>
+          </article>
+          <article class="lab-card">
+            <div><span>02 / REVIEW</span><b>Concept</b></div>
+            <h3>Hand-history analyser</h3>
+            <p>Paste a hand history and reconstruct the decision tree street by street.</p>
+          </article>
+          <article class="lab-card">
+            <div><span>03 / EQUITY</span><b>Concept</b></div>
+            <h3>Range visualiser</h3>
+            <p>Compare equity, pot odds and fold equity as ranges and bet sizes change.</p>
+          </article>
+          <article class="lab-card">
+            <div><span>04 / TRACK</span><b>Concept</b></div>
+            <h3>Bankroll dashboard</h3>
+            <p>Turn the spreadsheet workflow into a clean session log with filters and charts.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="poker-closing">
+        <p class="poker-kicker">Poker as a decision problem</p>
+        <h2>INCOMPLETE INFORMATION.<br><span>MEASURABLE UNCERTAINTY.</span></h2>
+        <p>The attraction is not certainty—it is making the best decision possible with limited information, then learning from the result without confusing the two.</p>
+        <a href="../">Return to portfolio <span aria-hidden="true">→</span></a>
+      </section>
+
+      <footer class="poker-footer">
+        <p>Nathan Foale / Poker Corner demo</p>
+        <p>Play responsibly. Results are historical.</p>
+      </footer>
+    </main>
+    <script src="poker.js"></script>
+  </body>
+</html>
