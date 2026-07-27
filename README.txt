@@ -12,7 +12,7 @@ HOW TO UPLOAD
    - www
    - htdocs
 3. Upload the CONTENTS of the "nathanfoale-website" folder into that root.
-4. Keep the about, assets, blog, projects, and prompt folders exactly as they are.
+4. Keep the about, assets, blog, projects, prompt, and quant-lab folders exactly as they are.
 5. Confirm that index.html is directly inside the website root.
 
 EXPECTED STRUCTURE
@@ -34,6 +34,8 @@ public_html/
     site.js
   projects/
     index.html
+    assets/
+      previews/
     blockchain-game/
       index.html
       game.css
@@ -45,6 +47,9 @@ public_html/
       index.html
     why-me/
       index.html
+  quant-lab/
+    index.html
+    og.png
 
 DOMAIN
 
@@ -59,9 +64,11 @@ NOTES
 - Google Analytics ID G-P6E7QEZ6HX is included on every page.
 - Blog is hosted natively under /blog/ with five individual essay pages.
 - About contains Nathan's education, interests, and current areas of focus.
-- Block Time is available under Projects. It uses a local probability
-  simulation and optionally reads the current block height from mempool.space.
-- SimuFi appears under Projects and displays "coming soon" until its page is
-  supplied.
+- Projects uses interactive case studies with visual previews, project details,
+  technology tags, and direct launch links.
+- Block Time is available under Projects. It uses a local probability simulation
+  and optionally reads the current block height from mempool.space.
+- SimuFi and Quant Lab display "coming soon" while their interactive models are
+  still in development.
 - The site uses Google Fonts, so internet access is needed to load those fonts.
   The website still works with system fonts if Google Fonts is unavailable.

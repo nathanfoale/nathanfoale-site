@@ -174,6 +174,31 @@
     });
   });
 
+  const caseStudies = document.querySelector("[data-case-studies]");
+  if (caseStudies) {
+    const stage = caseStudies.querySelector("[data-case-stage]");
+    const triggers = Array.from(caseStudies.querySelectorAll("[data-case-trigger]"));
+
+    const showCaseStudy = (project) => {
+      const template = document.querySelector(`[data-case-template="${project}"]`);
+      if (!(template instanceof HTMLTemplateElement) || !stage) return;
+
+      stage.replaceChildren(template.content.cloneNode(true));
+      triggers.forEach((trigger) => {
+        const active = trigger.getAttribute("data-case-trigger") === project;
+        trigger.classList.toggle("is-active", active);
+        trigger.setAttribute("aria-pressed", String(active));
+      });
+    };
+
+    triggers.forEach((trigger) => {
+      const project = trigger.getAttribute("data-case-trigger");
+      trigger.addEventListener("pointerenter", () => showCaseStudy(project));
+      trigger.addEventListener("focus", () => showCaseStudy(project));
+      trigger.addEventListener("click", () => showCaseStudy(project));
+    });
+  }
+
   document.querySelectorAll("[data-service]").forEach((button) => {
     button.addEventListener("click", () => {
       const wasOpen = button.classList.contains("is-open");

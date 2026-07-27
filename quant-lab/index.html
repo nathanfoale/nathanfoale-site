@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <title>Quant Lab — Nathan Foale</title>
+    <meta name="description" content="A coming-soon collection of interactive actuarial, economic and probability experiments by Nathan Foale.">
+    <meta property="og:title" content="Quant Lab — Nathan Foale">
+    <meta property="og:description" content="Interactive actuarial, economic and probability experiments are in development.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://nathanfoale.com/quant-lab/">
+    <meta property="og:image" content="https://nathanfoale.com/quant-lab/og.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="canonical" href="https://nathanfoale.com/quant-lab/">
+    <link rel="stylesheet" href="../assets/site.css">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-P6E7QEZ6HX"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag("js", new Date());
+      gtag("config", "G-P6E7QEZ6HX");
+    </script>
+  </head>
+  <body>
+    <main class="quant-lab-shell">
+      <canvas class="particle-canvas" data-particles aria-hidden="true"></canvas>
+      <div class="quant-grid-bg" aria-hidden="true"></div>
+      <div class="grain" aria-hidden="true"></div>
+
+      <article class="quant-lab-panel" aria-labelledby="quant-lab-title">
+        <header class="subpage-header">
+          <a class="back-link" href="../"><span aria-hidden="true">←</span> Portfolio</a>
+          <p class="subpage-index">NF / QUANT LAB</p>
+        </header>
+
+        <section class="quant-lab-hero">
+          <div class="quant-lab-copy">
+            <p class="quant-status"><span aria-hidden="true"></span> Status / In development</p>
+            <h1 id="quant-lab-title">QUANT<br><span>LAB</span></h1>
+            <p>A future home for interactive actuarial, economic and probability experiments—designed to make uncertainty visible, adjustable and easier to understand.</p>
+            <div class="quant-lab-actions">
+              <a href="../projects/">Explore current projects <span aria-hidden="true">→</span></a>
+              <a href="mailto:natfoale@gmail.com?subject=Quant%20Lab%20updates">Ask about the lab <span aria-hidden="true">↗</span></a>
+            </div>
+          </div>
+
+          <div class="quant-instrument" aria-label="Decorative preview of the future Quant Lab">
+            <div class="quant-instrument-bar"><span>MODEL / PREVIEW</span><span>SIMULATION 0.1</span></div>
+            <div class="quant-chart">
+              <span class="quant-axis quant-axis--y">OUTCOME</span>
+              <span class="quant-axis quant-axis--x">TIME</span>
+              <div class="quant-paths" aria-hidden="true">
+                <i></i><i></i><i></i><i></i><i></i><i></i>
+              </div>
+              <div class="quant-crosshair" aria-hidden="true"><span></span></div>
+            </div>
+            <div class="quant-readouts">
+              <p><span>Paths</span><strong>10,000</strong></p>
+              <p><span>Confidence</span><strong>95%</strong></p>
+              <p><span>Status</span><strong>Queued</strong></p>
+            </div>
+          </div>
+        </section>
+
+        <section class="quant-roadmap" aria-labelledby="quant-roadmap-title">
+          <div class="quant-roadmap-header">
+            <div>
+              <p class="subpage-kicker">Research tracks / 06</p>
+              <h2 id="quant-roadmap-title">WHAT’S BEING EXPLORED</h2>
+            </div>
+            <p>The lab will launch one focused experiment at a time. These are the questions currently on the bench.</p>
+          </div>
+          <ol class="quant-roadmap-grid">
+            <li><span>01</span><strong>Investment paths</strong><small>Monte Carlo scenarios</small></li>
+            <li><span>02</span><strong>Survival curves</strong><small>Actuarial models</small></li>
+            <li><span>03</span><strong>Insurance pricing</strong><small>Risk and premiums</small></li>
+            <li><span>04</span><strong>Distributions</strong><small>Probability explorer</small></li>
+            <li><span>05</span><strong>Economic scenarios</strong><small>Shock and response</small></li>
+            <li><span>06</span><strong>Strategy comparison</strong><small>Blackjack experiments</small></li>
+          </ol>
+        </section>
+      </article>
+    </main>
+    <script src="../assets/site.js"></script>
+  </body>
+</html>
