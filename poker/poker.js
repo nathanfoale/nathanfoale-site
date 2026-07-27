@@ -1,4 +1,41 @@
 (() => {
+  const handReplay = document.querySelector("[data-hand-replay]");
+  if (handReplay) {
+    const handVideo = handReplay.querySelector("[data-hand-video]");
+    const handStatus = handReplay.querySelector("[data-hand-status]");
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    handVideo.muted = true;
+    handVideo.defaultMuted = true;
+
+    const updateHandStatus = (message, playing = false) => {
+      handStatus.textContent = message;
+      handReplay.classList.toggle("is-playing", playing);
+    };
+
+    if (reducedMotion) {
+      updateHandStatus("PRESS PLAY TO WATCH");
+    } else {
+      const replayObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && entry.intersectionRatio >= 0.45) {
+            handVideo.play().catch(() => updateHandStatus("PRESS PLAY TO WATCH"));
+          } else if (!entry.isIntersecting || entry.intersectionRatio < 0.2) {
+            handVideo.pause();
+          }
+        });
+      }, { threshold: [0, 0.2, 0.45, 0.75] });
+
+      replayObserver.observe(handReplay);
+    }
+
+    handVideo.addEventListener("play", () => updateHandStatus("REPLAY PLAYING", true));
+    handVideo.addEventListener("pause", () => {
+      if (!handVideo.ended) updateHandStatus("REPLAY PAUSED");
+    });
+    handVideo.addEventListener("ended", () => updateHandStatus("REPLAY COMPLETE"));
+  }
+
   const trainer = document.querySelector("[data-poker-trainer]");
   if (!trainer) return;
 
