@@ -5,17 +5,63 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
     <meta name="theme-color" content="#160e1c">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>Nathan Foale — Portfolio</title>
-    <meta name="description" content="Nathan Foale’s portfolio of projects, experiments and ideas.">
-    <meta property="og:title" content="Nathan Foale — Portfolio">
-    <meta property="og:description" content="Projects, experiments and ideas by Nathan Foale.">
+    <title>Nathan Foale | Actuarial Studies, Economics &amp; Technology</title>
+    <meta name="description" content="Nathan Foale is a Monash University actuarial studies student building quantitative tools and writing about economics, risk, uncertainty and technology.">
+    <meta property="og:title" content="Nathan Foale | Actuarial Studies, Economics &amp; Technology">
+    <meta property="og:description" content="Quantitative tools, projects and writing by Nathan Foale, exploring economics, risk, uncertainty and technology.">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://nathanfoale.com/">
-    <meta property="og:image" content="https://nathanfoale.com/og.png">
+    <meta property="og:site_name" content="Nathan Foale">
+    <meta property="og:url" content="https://www.nathanfoale.com/">
+    <meta property="og:image" content="https://www.nathanfoale.com/og.png">
     <meta name="twitter:card" content="summary_large_image">
-    <link rel="canonical" href="https://nathanfoale.com/">
-    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="canonical" href="https://www.nathanfoale.com/">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" sizes="any">
     <link rel="stylesheet" href="assets/site.css">
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "WebSite",
+            "@id": "https://www.nathanfoale.com/#website",
+            "url": "https://www.nathanfoale.com/",
+            "name": "Nathan Foale",
+            "alternateName": "Nathan Foale Portfolio",
+            "inLanguage": "en-AU",
+            "about": {
+              "@id": "https://www.nathanfoale.com/#person"
+            }
+          },
+          {
+            "@type": "Person",
+            "@id": "https://www.nathanfoale.com/#person",
+            "name": "Nathan Foale",
+            "url": "https://www.nathanfoale.com/",
+            "jobTitle": "Master of Actuarial Studies Student",
+            "alumniOf": {
+              "@type": "CollegeOrUniversity",
+              "name": "Monash University",
+              "url": "https://www.monash.edu/"
+            },
+            "sameAs": [
+              "https://www.linkedin.com/in/nathanfoale",
+              "https://github.com/nathanfoale",
+              "https://www.instagram.com/nathanfoaale",
+              "https://www.youtube.com/@nathan_foale"
+            ],
+            "knowsAbout": [
+              "Actuarial Mathematics",
+              "Actuarial Statistics",
+              "Corporate Finance",
+              "Financial Mathematics",
+              "Mathematical Econometrics",
+              "Economics",
+              "Probability and Statistics"
+            ]
+          }
+        ]
+      }
+    </script>
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-P6E7QEZ6HX"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -41,12 +87,12 @@
 
         <div class="home-intro">
           <h1 id="intro-heading" class="typing-title">
-            <span data-typing></span><span class="typing-cursor" aria-hidden="true"></span>
+            <span data-typing>Nathan Foale</span><span class="typing-cursor" aria-hidden="true"></span>
           </h1>
-          <p class="intro-copy">Explore my work, experiments and ideas.</p>
+          <p class="intro-copy">Actuarial, economics and technology projects by Nathan Foale, exploring risk, uncertainty and complex systems.</p>
         </div>
 
-        <nav class="project-grid" aria-label="Featured links">
+        <nav class="project-grid" aria-label="Featured links" data-nosnippet>
           <a class="project-link" href="about/">
             <span class="project-number">01</span>
             <span class="project-name">About</span>
@@ -92,7 +138,7 @@
             <a href="https://github.com/nathanfoale" target="_blank" rel="noopener noreferrer" aria-label="GitHub">GH</a>
             <a href="https://www.youtube.com/@nathan_foale" target="_blank" rel="noopener noreferrer" aria-label="YouTube">YT</a>
           </div>
-          <p class="interaction-hint"><span aria-hidden="true">+</span> Tap anywhere to create particles</p>
+          <p class="interaction-hint" data-nosnippet><span aria-hidden="true">+</span> Tap anywhere to create particles</p>
         </footer>
       </section>
 
