@@ -521,11 +521,6 @@ button {
   color: var(--accent);
 }
 
-.about-actions a:nth-child(2) {
-  border-color: rgba(255, 255, 255, 0.1);
-  background: transparent;
-}
-
 .about-actions .about-contact-link {
   border-color: rgba(57, 255, 157, 0.4);
   background: rgba(57, 255, 157, 0.075);
@@ -3333,10 +3328,10 @@ button {
   .home-shell {
     overflow-y: auto;
     padding:
-      max(32px, calc(env(safe-area-inset-top, 0px) + 18px))
-      max(28px, calc(env(safe-area-inset-right, 0px) + 18px))
-      max(56px, calc(env(safe-area-inset-bottom, 0px) + 28px))
-      max(28px, calc(env(safe-area-inset-left, 0px) + 18px));
+      max(44px, calc(env(safe-area-inset-top, 0px) + 26px))
+      max(40px, calc(env(safe-area-inset-right, 0px) + 28px))
+      max(76px, calc(env(safe-area-inset-bottom, 0px) + 40px))
+      max(40px, calc(env(safe-area-inset-left, 0px) + 28px));
   }
 
   .about-shell,
