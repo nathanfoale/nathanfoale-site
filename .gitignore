@@ -1,16 +1,3 @@
-node_modules/
 .DS_Store
 .env
-.env.*
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-.vercel/
-# Don't commit large media
-*.mov
-*.mp4
-*.mkv
-*.avi
-
-# SimuFi heavy assets (optional)
-simufi/*.mov
+node_modules/
