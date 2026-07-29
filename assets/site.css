@@ -99,7 +99,8 @@ button {
   min-height: 100svh;
   min-height: 100dvh;
   place-items: center;
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: auto;
   padding: clamp(20px, 4vw, 56px);
   isolation: isolate;
   background:
