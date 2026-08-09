@@ -170,12 +170,13 @@
     return { context: context, width: rect.width, height: rect.height };
   }
 
+  var usePageParticleField = !document.querySelector("[data-hero-particles]");
   var pageParticleCanvas = document.createElement("canvas");
   pageParticleCanvas.className = "page-particle-canvas";
   pageParticleCanvas.setAttribute("data-page-particles", "");
   pageParticleCanvas.setAttribute("aria-hidden", "true");
   var pageParticleHost = document.querySelector("main") || document.body;
-  pageParticleHost.insertBefore(pageParticleCanvas, pageParticleHost.firstChild);
+  if (usePageParticleField) pageParticleHost.insertBefore(pageParticleCanvas, pageParticleHost.firstChild);
 
   var pageParticleMetrics;
   var pageParticleNodes = [];
@@ -222,7 +223,7 @@
     }
   }
 
-  if (!reduceMotion) {
+  if (usePageParticleField && !reduceMotion) {
     window.addEventListener("pointermove", function (event) {
       pageParticlePointer.x = event.clientX;
       pageParticlePointer.y = event.clientY;
@@ -361,15 +362,17 @@
     if (!reduceMotion) pageParticleFrame = window.requestAnimationFrame(drawPageParticleField);
   }
 
-  seedPageParticleField();
-  drawPageParticleField(0);
-  window.addEventListener("resize", function () {
+  if (usePageParticleField) {
     seedPageParticleField();
-    if (reduceMotion) drawPageParticleField(0);
-  });
-  window.addEventListener("pagehide", function () {
-    if (pageParticleFrame) window.cancelAnimationFrame(pageParticleFrame);
-  });
+    drawPageParticleField(0);
+    window.addEventListener("resize", function () {
+      seedPageParticleField();
+      if (reduceMotion) drawPageParticleField(0);
+    });
+    window.addEventListener("pagehide", function () {
+      if (pageParticleFrame) window.cancelAnimationFrame(pageParticleFrame);
+    });
+  }
 
   var hero = document.querySelector(".hero");
   var heroCanvas = document.querySelector("[data-hero-particles]");
