@@ -17,98 +17,6 @@
   var menuButton = document.querySelector(".menu-toggle");
   var mobileMenu = document.querySelector(".mobile-nav");
 
-  if (document.body.classList.contains("essay-locked")) {
-    var essayContent = document.querySelector(".article-shell");
-    var essayGate = document.createElement("section");
-    essayGate.className = "essay-gate";
-    essayGate.setAttribute("data-essay-gate", "");
-    essayGate.setAttribute("role", "dialog");
-    essayGate.setAttribute("aria-modal", "true");
-    essayGate.setAttribute("aria-labelledby", "essay-gate-title");
-    essayGate.innerHTML = [
-      '<div class="essay-gate-orbits" aria-hidden="true"><i></i><i></i><i></i></div>',
-      '<div class="essay-gate-card">',
-        '<div class="essay-gate-topline">',
-          '<a href="/blog/"><span aria-hidden="true">←</span> All writing</a>',
-          '<img src="/assets/nf-logo-mark-header.png" alt="" aria-hidden="true">',
-        '</div>',
-        '<p class="essay-gate-kicker"><span aria-hidden="true"></span> Protected writing</p>',
-        '<h1 id="essay-gate-title">PASSCODE<br><em>REQUIRED.</em></h1>',
-        '<p class="essay-gate-copy">Enter the four-digit passcode to read this essay.</p>',
-        '<form class="essay-gate-form" data-essay-gate-form novalidate>',
-          '<label for="essay-passcode">Passcode</label>',
-          '<div class="essay-gate-controls">',
-            '<input id="essay-passcode" data-essay-passcode type="password" inputmode="numeric" pattern="[0-9]*" maxlength="4" autocomplete="off" aria-describedby="essay-gate-message">',
-            '<button type="submit">View essay <span aria-hidden="true">→</span></button>',
-          '</div>',
-          '<p class="essay-gate-message" id="essay-gate-message" data-essay-gate-message aria-live="polite">Four digits</p>',
-        '</form>',
-      '</div>'
-    ].join("");
-    document.body.insertBefore(essayGate, document.body.firstChild);
-
-    var essayGateForm = essayGate.querySelector("[data-essay-gate-form]");
-    var essayPasscode = essayGate.querySelector("[data-essay-passcode]");
-    var essayGateMessage = essayGate.querySelector("[data-essay-gate-message]");
-    var essayGateButton = essayGateForm.querySelector("button");
-    var expectedPasscodeHash = "408311ba9b03d5d2d41463f1b49280625f826a70a7dc5ccd92d0b41b93b26be2";
-
-    function hashEssayPasscode(value) {
-      if (!window.crypto || !window.crypto.subtle || !window.TextEncoder) return Promise.resolve("");
-      return window.crypto.subtle.digest("SHA-256", new TextEncoder().encode(value)).then(function (buffer) {
-        return Array.prototype.map.call(new Uint8Array(buffer), function (byte) {
-          return byte.toString(16).padStart(2, "0");
-        }).join("");
-      });
-    }
-
-    essayPasscode.addEventListener("input", function () {
-      essayPasscode.value = essayPasscode.value.replace(/\D/g, "").slice(0, 4);
-      essayGateForm.classList.remove("is-error");
-      essayPasscode.removeAttribute("aria-invalid");
-      essayGateMessage.textContent = "Four digits";
-    });
-
-    essayGateForm.addEventListener("submit", function (event) {
-      event.preventDefault();
-      essayGateButton.disabled = true;
-      essayGateButton.firstChild.nodeValue = "Checking ";
-
-      hashEssayPasscode(essayPasscode.value).then(function (passcodeHash) {
-        if (passcodeHash === expectedPasscodeHash) {
-          essayGate.classList.add("is-unlocking");
-          window.setTimeout(function () {
-            document.body.classList.remove("essay-locked");
-            document.body.classList.add("essay-unlocked");
-            if (essayContent) {
-              essayContent.removeAttribute("inert");
-              essayContent.removeAttribute("aria-hidden");
-            }
-            essayGate.remove();
-            var essayHeading = document.querySelector(".article-header h1");
-            if (essayHeading) {
-              essayHeading.setAttribute("tabindex", "-1");
-              essayHeading.focus({ preventScroll: true });
-            }
-          }, reduceMotion ? 0 : 320);
-          return;
-        }
-
-        essayGateForm.classList.remove("is-error");
-        void essayGateForm.offsetWidth;
-        essayGateForm.classList.add("is-error");
-        essayPasscode.setAttribute("aria-invalid", "true");
-        essayPasscode.value = "";
-        essayGateMessage.textContent = "Incorrect passcode. Try again.";
-        essayGateButton.disabled = false;
-        essayGateButton.firstChild.nodeValue = "View essay ";
-        essayPasscode.focus();
-      });
-    });
-
-    window.setTimeout(function () { essayPasscode.focus(); }, 120);
-  }
-
   function closeMenu() {
     if (!menuButton || !mobileMenu) return;
     menuButton.setAttribute("aria-expanded", "false");
@@ -170,13 +78,12 @@
     return { context: context, width: rect.width, height: rect.height };
   }
 
-  var usePageParticleField = !document.querySelector("[data-hero-particles]");
   var pageParticleCanvas = document.createElement("canvas");
   pageParticleCanvas.className = "page-particle-canvas";
   pageParticleCanvas.setAttribute("data-page-particles", "");
   pageParticleCanvas.setAttribute("aria-hidden", "true");
-  var pageParticleHost = document.querySelector(".poker-shell") || document.body;
-  if (usePageParticleField) pageParticleHost.insertBefore(pageParticleCanvas, pageParticleHost.firstChild);
+  var pageParticleHost = document.querySelector("main") || document.body;
+  pageParticleHost.insertBefore(pageParticleCanvas, pageParticleHost.firstChild);
 
   var pageParticleMetrics;
   var pageParticleNodes = [];
@@ -189,23 +96,21 @@
   function seedPageParticleField() {
     pageParticleMetrics = fitCanvas(pageParticleCanvas);
     var compact = pageParticleMetrics.width < 720;
-    var count = compact ? 24 : Math.max(34, Math.min(46, Math.round(pageParticleMetrics.width / 38)));
-    var columns = compact ? 5 : 9;
-    var rows = Math.ceil(count / columns);
+    var count = compact ? 30 : Math.max(44, Math.min(66, Math.round(pageParticleMetrics.width / 23)));
+    var clusters = [[0.17, 0.22], [0.67, 0.31], [0.34, 0.68], [0.79, 0.78]];
     pageParticleNodes = [];
 
     for (var pageIndex = 0; pageIndex < count; pageIndex += 1) {
-      var column = pageIndex % columns;
-      var row = Math.floor(pageIndex / columns);
-      var distributedX = (column + 0.16 + Math.random() * 0.68) / columns;
-      var distributedY = (row + 0.14 + Math.random() * 0.72) / rows;
+      var cluster = clusters[pageIndex % clusters.length];
+      var scatterX = (Math.random() - Math.random()) * (compact ? 0.22 : 0.18);
+      var scatterY = (Math.random() - Math.random()) * (compact ? 0.2 : 0.16);
       pageParticleNodes.push({
-        x: distributedX * pageParticleMetrics.width,
-        y: distributedY * pageParticleMetrics.height,
-        vx: (Math.random() - 0.5) * 0.11,
-        vy: (Math.random() - 0.5) * 0.11,
-        size: 0.48 + Math.random() * 0.72,
-        alpha: 0.12 + Math.random() * 0.2
+        x: Math.max(8, Math.min(pageParticleMetrics.width - 8, (cluster[0] + scatterX) * pageParticleMetrics.width)),
+        y: Math.max(8, Math.min(pageParticleMetrics.height - 8, (cluster[1] + scatterY) * pageParticleMetrics.height)),
+        vx: (Math.random() - 0.5) * 0.15,
+        vy: (Math.random() - 0.5) * 0.15,
+        size: 0.75 + Math.random() * 1.35,
+        alpha: 0.16 + Math.random() * 0.32
       });
     }
   }
@@ -219,13 +124,13 @@
         y: y,
         vx: Math.cos(burstAngle) * burstSpeed,
         vy: Math.sin(burstAngle) * burstSpeed,
-        size: 0.65 + Math.random() * 1.05,
+        size: 0.8 + Math.random() * 1.7,
         life: 1
       });
     }
   }
 
-  if (usePageParticleField && !reduceMotion) {
+  if (!reduceMotion) {
     window.addEventListener("pointermove", function (event) {
       pageParticlePointer.x = event.clientX;
       pageParticlePointer.y = event.clientY;
@@ -289,20 +194,17 @@
     }
 
     for (var firstNode = 0; firstNode < pageParticleNodes.length; firstNode += 1) {
-      var pageConnections = 0;
       for (var secondNode = firstNode + 1; secondNode < pageParticleNodes.length; secondNode += 1) {
         var pageDx = pageParticleNodes[firstNode].x - pageParticleNodes[secondNode].x;
         var pageDy = pageParticleNodes[firstNode].y - pageParticleNodes[secondNode].y;
         var pageDistance = Math.sqrt(pageDx * pageDx + pageDy * pageDy);
-        if (pageDistance > 155) continue;
+        if (pageDistance > 128) continue;
         pageContext.beginPath();
         pageContext.moveTo(pageParticleNodes[firstNode].x, pageParticleNodes[firstNode].y);
         pageContext.lineTo(pageParticleNodes[secondNode].x, pageParticleNodes[secondNode].y);
-        pageContext.strokeStyle = "rgba(61, 242, 160," + (0.052 * (1 - pageDistance / 155)) + ")";
-        pageContext.lineWidth = 0.55;
+        pageContext.strokeStyle = "rgba(61, 242, 160," + (0.12 * (1 - pageDistance / 128)) + ")";
+        pageContext.lineWidth = 0.65;
         pageContext.stroke();
-        pageConnections += 1;
-        if (pageConnections >= 2) break;
       }
     }
 
@@ -310,12 +212,12 @@
       var pointerDistanceX = node.x - pageParticlePointer.x;
       var pointerDistanceY = node.y - pageParticlePointer.y;
       var pointerDistance = Math.sqrt(pointerDistanceX * pointerDistanceX + pointerDistanceY * pointerDistanceY);
-      var pointerGlow = pageParticlePointer.active ? Math.max(0, 1 - pointerDistance / 155) : 0;
+      var pointerGlow = pageParticlePointer.active ? Math.max(0, 1 - pointerDistance / 170) : 0;
       pageContext.beginPath();
-      pageContext.arc(node.x, node.y, node.size + pointerGlow * 0.45, 0, Math.PI * 2);
-      pageContext.fillStyle = index % 7 === 0
-        ? "rgba(61, 242, 160," + (node.alpha + pointerGlow * 0.24) + ")"
-        : "rgba(191, 209, 203," + (node.alpha + pointerGlow * 0.18) + ")";
+      pageContext.arc(node.x, node.y, node.size + pointerGlow * 0.9, 0, Math.PI * 2);
+      pageContext.fillStyle = index % 5 === 0
+        ? "rgba(61, 242, 160," + (node.alpha + pointerGlow * 0.35) + ")"
+        : "rgba(191, 209, 203," + (node.alpha + pointerGlow * 0.25) + ")";
       pageContext.fill();
     });
 
@@ -367,17 +269,15 @@
     if (!reduceMotion) pageParticleFrame = window.requestAnimationFrame(drawPageParticleField);
   }
 
-  if (usePageParticleField) {
+  seedPageParticleField();
+  drawPageParticleField(0);
+  window.addEventListener("resize", function () {
     seedPageParticleField();
-    drawPageParticleField(0);
-    window.addEventListener("resize", function () {
-      seedPageParticleField();
-      if (reduceMotion) drawPageParticleField(0);
-    });
-    window.addEventListener("pagehide", function () {
-      if (pageParticleFrame) window.cancelAnimationFrame(pageParticleFrame);
-    });
-  }
+    if (reduceMotion) drawPageParticleField(0);
+  });
+  window.addEventListener("pagehide", function () {
+    if (pageParticleFrame) window.cancelAnimationFrame(pageParticleFrame);
+  });
 
   var hero = document.querySelector(".hero");
   var heroCanvas = document.querySelector("[data-hero-particles]");
@@ -407,16 +307,11 @@
     }
 
     function pointerPosition(event) {
-      var rect = heroCanvas.getBoundingClientRect();
+      var rect = hero.getBoundingClientRect();
       return {
         x: event.clientX - rect.left,
         y: event.clientY - rect.top
       };
-    }
-
-    function pointerInsideHeroField(event) {
-      var rect = heroCanvas.getBoundingClientRect();
-      return event.clientY >= rect.top && event.clientY <= rect.bottom;
     }
 
     function addBurst(x, y, count, strength) {
@@ -439,11 +334,14 @@
     }
 
     if (!reduceMotion) {
-      window.addEventListener("pointermove", function (event) {
-        if (!pointerInsideHeroField(event)) {
-          heroPointer.active = false;
-          return;
-        }
+      hero.addEventListener("pointerenter", function (event) {
+        var point = pointerPosition(event);
+        heroPointer.x = point.x;
+        heroPointer.y = point.y;
+        heroPointer.active = true;
+      }, { passive: true });
+
+      hero.addEventListener("pointermove", function (event) {
         var point = pointerPosition(event);
         heroPointer.x = point.x;
         heroPointer.y = point.y;
@@ -461,8 +359,11 @@
         }
       }, { passive: true });
 
-      window.addEventListener("pointerdown", function (event) {
-        if (!pointerInsideHeroField(event)) return;
+      hero.addEventListener("pointerleave", function () {
+        heroPointer.active = false;
+      }, { passive: true });
+
+      hero.addEventListener("pointerdown", function (event) {
         var point = pointerPosition(event);
         heroPointer.x = point.x;
         heroPointer.y = point.y;
