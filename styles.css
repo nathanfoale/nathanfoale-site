@@ -1703,15 +1703,16 @@ main,
   }
 
   .mobile-nav {
-    position: absolute;
-    top: calc(100% + 1px);
-    right: calc((100vw - 100%) / -2);
-    left: calc((100vw - 100%) / -2);
+    position: fixed;
+    top: 72px;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 999;
     display: grid;
     align-content: start;
     gap: 0;
-    height: calc(100dvh - 72px);
-    min-height: calc(100svh - 72px);
+    min-height: 0;
     padding: 1rem max(24px, env(safe-area-inset-right)) max(2rem, env(safe-area-inset-bottom)) max(24px, env(safe-area-inset-left));
     overflow-y: auto;
     overscroll-behavior: contain;
