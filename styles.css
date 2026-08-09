@@ -216,17 +216,20 @@ main,
   align-items: center;
   min-height: 565px;
   padding: 68px 18px 54px;
-  overflow: hidden;
+  overflow: visible;
   isolation: isolate;
 }
 
 .hero-particle-canvas {
   position: absolute;
-  inset: 0;
+  top: 0;
+  bottom: 0;
+  left: 50%;
   z-index: 0;
-  width: 100%;
+  width: 100vw;
   height: 100%;
   pointer-events: none;
+  transform: translateX(-50%);
 }
 
 .hero-glow {

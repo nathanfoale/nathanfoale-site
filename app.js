@@ -175,7 +175,7 @@
   pageParticleCanvas.className = "page-particle-canvas";
   pageParticleCanvas.setAttribute("data-page-particles", "");
   pageParticleCanvas.setAttribute("aria-hidden", "true");
-  var pageParticleHost = document.querySelector("main") || document.body;
+  var pageParticleHost = document.querySelector(".poker-shell") || document.body;
   if (usePageParticleField) pageParticleHost.insertBefore(pageParticleCanvas, pageParticleHost.firstChild);
 
   var pageParticleMetrics;
@@ -189,21 +189,23 @@
   function seedPageParticleField() {
     pageParticleMetrics = fitCanvas(pageParticleCanvas);
     var compact = pageParticleMetrics.width < 720;
-    var count = compact ? 30 : Math.max(44, Math.min(66, Math.round(pageParticleMetrics.width / 23)));
-    var clusters = [[0.17, 0.22], [0.67, 0.31], [0.34, 0.68], [0.79, 0.78]];
+    var count = compact ? 24 : Math.max(34, Math.min(46, Math.round(pageParticleMetrics.width / 38)));
+    var columns = compact ? 5 : 9;
+    var rows = Math.ceil(count / columns);
     pageParticleNodes = [];
 
     for (var pageIndex = 0; pageIndex < count; pageIndex += 1) {
-      var cluster = clusters[pageIndex % clusters.length];
-      var scatterX = (Math.random() - Math.random()) * (compact ? 0.22 : 0.18);
-      var scatterY = (Math.random() - Math.random()) * (compact ? 0.2 : 0.16);
+      var column = pageIndex % columns;
+      var row = Math.floor(pageIndex / columns);
+      var distributedX = (column + 0.16 + Math.random() * 0.68) / columns;
+      var distributedY = (row + 0.14 + Math.random() * 0.72) / rows;
       pageParticleNodes.push({
-        x: Math.max(8, Math.min(pageParticleMetrics.width - 8, (cluster[0] + scatterX) * pageParticleMetrics.width)),
-        y: Math.max(8, Math.min(pageParticleMetrics.height - 8, (cluster[1] + scatterY) * pageParticleMetrics.height)),
-        vx: (Math.random() - 0.5) * 0.15,
-        vy: (Math.random() - 0.5) * 0.15,
-        size: 0.75 + Math.random() * 1.35,
-        alpha: 0.16 + Math.random() * 0.32
+        x: distributedX * pageParticleMetrics.width,
+        y: distributedY * pageParticleMetrics.height,
+        vx: (Math.random() - 0.5) * 0.11,
+        vy: (Math.random() - 0.5) * 0.11,
+        size: 0.48 + Math.random() * 0.72,
+        alpha: 0.12 + Math.random() * 0.2
       });
     }
   }
@@ -217,7 +219,7 @@
         y: y,
         vx: Math.cos(burstAngle) * burstSpeed,
         vy: Math.sin(burstAngle) * burstSpeed,
-        size: 0.8 + Math.random() * 1.7,
+        size: 0.65 + Math.random() * 1.05,
         life: 1
       });
     }
@@ -287,17 +289,20 @@
     }
 
     for (var firstNode = 0; firstNode < pageParticleNodes.length; firstNode += 1) {
+      var pageConnections = 0;
       for (var secondNode = firstNode + 1; secondNode < pageParticleNodes.length; secondNode += 1) {
         var pageDx = pageParticleNodes[firstNode].x - pageParticleNodes[secondNode].x;
         var pageDy = pageParticleNodes[firstNode].y - pageParticleNodes[secondNode].y;
         var pageDistance = Math.sqrt(pageDx * pageDx + pageDy * pageDy);
-        if (pageDistance > 128) continue;
+        if (pageDistance > 155) continue;
         pageContext.beginPath();
         pageContext.moveTo(pageParticleNodes[firstNode].x, pageParticleNodes[firstNode].y);
         pageContext.lineTo(pageParticleNodes[secondNode].x, pageParticleNodes[secondNode].y);
-        pageContext.strokeStyle = "rgba(61, 242, 160," + (0.12 * (1 - pageDistance / 128)) + ")";
-        pageContext.lineWidth = 0.65;
+        pageContext.strokeStyle = "rgba(61, 242, 160," + (0.052 * (1 - pageDistance / 155)) + ")";
+        pageContext.lineWidth = 0.55;
         pageContext.stroke();
+        pageConnections += 1;
+        if (pageConnections >= 2) break;
       }
     }
 
@@ -305,12 +310,12 @@
       var pointerDistanceX = node.x - pageParticlePointer.x;
       var pointerDistanceY = node.y - pageParticlePointer.y;
       var pointerDistance = Math.sqrt(pointerDistanceX * pointerDistanceX + pointerDistanceY * pointerDistanceY);
-      var pointerGlow = pageParticlePointer.active ? Math.max(0, 1 - pointerDistance / 170) : 0;
+      var pointerGlow = pageParticlePointer.active ? Math.max(0, 1 - pointerDistance / 155) : 0;
       pageContext.beginPath();
-      pageContext.arc(node.x, node.y, node.size + pointerGlow * 0.9, 0, Math.PI * 2);
-      pageContext.fillStyle = index % 5 === 0
-        ? "rgba(61, 242, 160," + (node.alpha + pointerGlow * 0.35) + ")"
-        : "rgba(191, 209, 203," + (node.alpha + pointerGlow * 0.25) + ")";
+      pageContext.arc(node.x, node.y, node.size + pointerGlow * 0.45, 0, Math.PI * 2);
+      pageContext.fillStyle = index % 7 === 0
+        ? "rgba(61, 242, 160," + (node.alpha + pointerGlow * 0.24) + ")"
+        : "rgba(191, 209, 203," + (node.alpha + pointerGlow * 0.18) + ")";
       pageContext.fill();
     });
 
@@ -402,11 +407,16 @@
     }
 
     function pointerPosition(event) {
-      var rect = hero.getBoundingClientRect();
+      var rect = heroCanvas.getBoundingClientRect();
       return {
         x: event.clientX - rect.left,
         y: event.clientY - rect.top
       };
+    }
+
+    function pointerInsideHeroField(event) {
+      var rect = heroCanvas.getBoundingClientRect();
+      return event.clientY >= rect.top && event.clientY <= rect.bottom;
     }
 
     function addBurst(x, y, count, strength) {
@@ -429,14 +439,11 @@
     }
 
     if (!reduceMotion) {
-      hero.addEventListener("pointerenter", function (event) {
-        var point = pointerPosition(event);
-        heroPointer.x = point.x;
-        heroPointer.y = point.y;
-        heroPointer.active = true;
-      }, { passive: true });
-
-      hero.addEventListener("pointermove", function (event) {
+      window.addEventListener("pointermove", function (event) {
+        if (!pointerInsideHeroField(event)) {
+          heroPointer.active = false;
+          return;
+        }
         var point = pointerPosition(event);
         heroPointer.x = point.x;
         heroPointer.y = point.y;
@@ -454,11 +461,8 @@
         }
       }, { passive: true });
 
-      hero.addEventListener("pointerleave", function () {
-        heroPointer.active = false;
-      }, { passive: true });
-
-      hero.addEventListener("pointerdown", function (event) {
+      window.addEventListener("pointerdown", function (event) {
+        if (!pointerInsideHeroField(event)) return;
         var point = pointerPosition(event);
         heroPointer.x = point.x;
         heroPointer.y = point.y;
