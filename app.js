@@ -17,6 +17,98 @@
   var menuButton = document.querySelector(".menu-toggle");
   var mobileMenu = document.querySelector(".mobile-nav");
 
+  if (document.body.classList.contains("essay-locked")) {
+    var essayContent = document.querySelector(".article-shell");
+    var essayGate = document.createElement("section");
+    essayGate.className = "essay-gate";
+    essayGate.setAttribute("data-essay-gate", "");
+    essayGate.setAttribute("role", "dialog");
+    essayGate.setAttribute("aria-modal", "true");
+    essayGate.setAttribute("aria-labelledby", "essay-gate-title");
+    essayGate.innerHTML = [
+      '<div class="essay-gate-orbits" aria-hidden="true"><i></i><i></i><i></i></div>',
+      '<div class="essay-gate-card">',
+        '<div class="essay-gate-topline">',
+          '<a href="/blog/"><span aria-hidden="true">←</span> All writing</a>',
+          '<img src="/assets/nf-logo-mark-header.png" alt="" aria-hidden="true">',
+        '</div>',
+        '<p class="essay-gate-kicker"><span aria-hidden="true"></span> Protected writing</p>',
+        '<h1 id="essay-gate-title">PASSCODE<br><em>REQUIRED.</em></h1>',
+        '<p class="essay-gate-copy">Enter the four-digit passcode to read this essay.</p>',
+        '<form class="essay-gate-form" data-essay-gate-form novalidate>',
+          '<label for="essay-passcode">Passcode</label>',
+          '<div class="essay-gate-controls">',
+            '<input id="essay-passcode" data-essay-passcode type="password" inputmode="numeric" pattern="[0-9]*" maxlength="4" autocomplete="off" aria-describedby="essay-gate-message">',
+            '<button type="submit">View essay <span aria-hidden="true">→</span></button>',
+          '</div>',
+          '<p class="essay-gate-message" id="essay-gate-message" data-essay-gate-message aria-live="polite">Four digits</p>',
+        '</form>',
+      '</div>'
+    ].join("");
+    document.body.insertBefore(essayGate, document.body.firstChild);
+
+    var essayGateForm = essayGate.querySelector("[data-essay-gate-form]");
+    var essayPasscode = essayGate.querySelector("[data-essay-passcode]");
+    var essayGateMessage = essayGate.querySelector("[data-essay-gate-message]");
+    var essayGateButton = essayGateForm.querySelector("button");
+    var expectedPasscodeHash = "408311ba9b03d5d2d41463f1b49280625f826a70a7dc5ccd92d0b41b93b26be2";
+
+    function hashEssayPasscode(value) {
+      if (!window.crypto || !window.crypto.subtle || !window.TextEncoder) return Promise.resolve("");
+      return window.crypto.subtle.digest("SHA-256", new TextEncoder().encode(value)).then(function (buffer) {
+        return Array.prototype.map.call(new Uint8Array(buffer), function (byte) {
+          return byte.toString(16).padStart(2, "0");
+        }).join("");
+      });
+    }
+
+    essayPasscode.addEventListener("input", function () {
+      essayPasscode.value = essayPasscode.value.replace(/\D/g, "").slice(0, 4);
+      essayGateForm.classList.remove("is-error");
+      essayPasscode.removeAttribute("aria-invalid");
+      essayGateMessage.textContent = "Four digits";
+    });
+
+    essayGateForm.addEventListener("submit", function (event) {
+      event.preventDefault();
+      essayGateButton.disabled = true;
+      essayGateButton.firstChild.nodeValue = "Checking ";
+
+      hashEssayPasscode(essayPasscode.value).then(function (passcodeHash) {
+        if (passcodeHash === expectedPasscodeHash) {
+          essayGate.classList.add("is-unlocking");
+          window.setTimeout(function () {
+            document.body.classList.remove("essay-locked");
+            document.body.classList.add("essay-unlocked");
+            if (essayContent) {
+              essayContent.removeAttribute("inert");
+              essayContent.removeAttribute("aria-hidden");
+            }
+            essayGate.remove();
+            var essayHeading = document.querySelector(".article-header h1");
+            if (essayHeading) {
+              essayHeading.setAttribute("tabindex", "-1");
+              essayHeading.focus({ preventScroll: true });
+            }
+          }, reduceMotion ? 0 : 320);
+          return;
+        }
+
+        essayGateForm.classList.remove("is-error");
+        void essayGateForm.offsetWidth;
+        essayGateForm.classList.add("is-error");
+        essayPasscode.setAttribute("aria-invalid", "true");
+        essayPasscode.value = "";
+        essayGateMessage.textContent = "Incorrect passcode. Try again.";
+        essayGateButton.disabled = false;
+        essayGateButton.firstChild.nodeValue = "View essay ";
+        essayPasscode.focus();
+      });
+    });
+
+    window.setTimeout(function () { essayPasscode.focus(); }, 120);
+  }
+
   function closeMenu() {
     if (!menuButton || !mobileMenu) return;
     menuButton.setAttribute("aria-expanded", "false");
