@@ -1,257 +1,183 @@
 <!doctype html>
-<html lang="en">
+<html lang="en-AU">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-    <meta name="theme-color" content="#1b0f20">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="theme-color" content="#08090d">
+    <meta name="description" content="Projects by Nathan Foale: quantitative tools, simulations and visual experiments exploring mathematics, economics, technology and uncertainty.">
     <title>Nathan Foale | Projects</title>
-    <meta name="description" content="Interactive tools, quantitative experiments and visual work by Nathan Foale.">
     <meta property="og:title" content="Nathan Foale | Projects">
-    <meta property="og:description" content="Interactive tools, quantitative experiments and visual work.">
+    <meta property="og:description" content="Quantitative tools, simulations and visual experiments built to make complex ideas easier to explore.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://www.nathanfoale.com/projects/">
     <meta property="og:image" content="https://www.nathanfoale.com/og.png">
     <meta name="twitter:card" content="summary_large_image">
     <link rel="canonical" href="https://www.nathanfoale.com/projects/">
     <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-    <link rel="stylesheet" href="../assets/site.css">
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-P6E7QEZ6HX"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag("js", new Date());
-      gtag("config", "G-P6E7QEZ6HX");
-    </script>
+    <link rel="stylesheet" href="../styles.css">
+    <script src="../app.js" defer></script>
   </head>
   <body>
-    <main class="projects-shell projects-shell--case-studies">
-      <canvas class="particle-canvas" data-particles aria-hidden="true"></canvas>
-      <div class="grain" aria-hidden="true"></div>
+    <a class="skip-link" href="#main">Skip to content</a>
 
-      <section class="subpage-panel projects-panel" aria-labelledby="projects-title">
-        <header class="subpage-header">
-          <a class="back-link" href="../"><span aria-hidden="true">←</span> Portfolio</a>
-          <p class="subpage-index">NF / PROJECTS</p>
-        </header>
+    <header class="site-header">
+      <a class="brand" href="../" aria-label="Nathan Foale, homepage"><img src="../assets/nf-logo-mark-header.png" alt="" aria-hidden="true"></a>
+      <nav class="desktop-nav" aria-label="Primary navigation">
+        <a href="../about/">About</a>
+        <a href="./" aria-current="page">Projects</a>
+        <a href="../blog/">Blog</a>
+        <a href="../poker/">Poker</a>
+        <a class="nav-contact" href="mailto:contact@nathanfoale.com?subject=Website%20enquiry">Contact</a>
+      </nav>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-menu">
+        <span>Menu</span><i aria-hidden="true"></i>
+      </button>
+      <nav class="mobile-nav" id="mobile-menu" aria-label="Mobile navigation" hidden>
+        <a href="../about/">About</a>
+        <a href="./" aria-current="page">Projects</a>
+        <a href="../blog/">Blog</a>
+        <a href="../poker/">Poker</a>
+        <a href="../#build">Build with me</a>
+        <a href="mailto:contact@nathanfoale.com?subject=Website%20enquiry">Contact</a>
+      </nav>
+    </header>
 
-        <div class="subpage-intro projects-intro">
-          <div>
-            <p class="subpage-kicker">Selected work / 06 projects</p>
-            <h1 id="projects-title">PROJECTS</h1>
-          </div>
+    <main class="directory-shell" id="main">
+      <section class="directory-hero reveal" aria-labelledby="directory-title">
+        <a class="directory-back" href="../"><span aria-hidden="true">←</span> Back to portfolio</a>
+        <div>
+          <p class="eyebrow"><span aria-hidden="true"></span>Selected work / 06 projects</p>
+          <h1 id="directory-title">Projects<span>.</span></h1>
           <p>Tools, simulations and visual experiments built to make complex ideas easier to explore.</p>
         </div>
-
-        <div class="case-study-layout" data-case-studies>
-          <nav class="case-study-list" aria-label="Select a project">
-            <button class="case-study-trigger is-active" type="button" data-case-trigger="animation" aria-pressed="true">
-              <span class="case-trigger-number">01</span>
-              <span><strong>Euler’s Identity</strong><small>Mathematical animation</small></span>
-              <span class="case-trigger-arrow" aria-hidden="true">→</span>
-            </button>
-            <button class="case-study-trigger" type="button" data-case-trigger="blackjack" aria-pressed="false">
-              <span class="case-trigger-number">02</span>
-              <span><strong>Blackjack Simulator</strong><small>Monte Carlo risk model</small></span>
-              <span class="case-trigger-arrow" aria-hidden="true">→</span>
-            </button>
-            <button class="case-study-trigger" type="button" data-case-trigger="payday" aria-pressed="false">
-              <span class="case-trigger-number">03</span>
-              <span><strong>Payday Plan</strong><small>Shift pay planner</small></span>
-              <span class="case-trigger-arrow" aria-hidden="true">→</span>
-            </button>
-            <button class="case-study-trigger" type="button" data-case-trigger="rpubs" aria-pressed="false">
-              <span class="case-trigger-number">04</span>
-              <span><strong>R Pubs</strong><small>Quantitative analysis</small></span>
-              <span class="case-trigger-arrow" aria-hidden="true">→</span>
-            </button>
-            <button class="case-study-trigger" type="button" data-case-trigger="block-time" aria-pressed="false">
-              <span class="case-trigger-number">05</span>
-              <span><strong>Block Time</strong><small>Bitcoin probability game</small></span>
-              <span class="case-trigger-arrow" aria-hidden="true">→</span>
-            </button>
-            <button class="case-study-trigger" type="button" data-case-trigger="simufi" aria-pressed="false">
-              <span class="case-trigger-number">06</span>
-              <span><strong>SimuFi</strong><small>Financial planning concept</small></span>
-              <span class="case-trigger-status">Soon</span>
-            </button>
-          </nav>
-
-          <section class="case-study-stage" data-case-stage aria-label="Selected project details">
-            <article class="case-study-card">
-              <figure class="case-visual case-visual--image">
-                <img src="assets/previews/eulers-identity.jpg" alt="Euler's Identity mathematical animation preview" width="1280" height="720">
-                <figcaption><span>Video preview / mathematical visualisation</span><span>01 / 06</span></figcaption>
-              </figure>
-              <div class="case-study-content">
-                <header class="case-study-heading">
-                  <p>Animation / Mathematics</p>
-                  <h2>Euler’s Identity</h2>
-                </header>
-                <p class="case-problem"><span>The problem</span>Euler’s identity is elegant on paper, but its relationship to exponential motion can feel abstract without a visual model.</p>
-                <div class="case-detail-grid">
-                  <section><h3>What I built</h3><p>A short mathematical animation that turns Euler’s identity into a visual narrative.</p></section>
-                  <section><h3>How it works</h3><p>Equations, axes and changing geometry reveal how exponential and circular ideas connect.</p></section>
-                  <section><h3>What I learned</h3><p>Motion can communicate mathematical structure faster than notation alone.</p></section>
-                </div>
-                <ul class="case-tags" aria-label="Technologies and topics">
-                  <li>Mathematics</li><li>Animation</li><li>Visual storytelling</li>
-                </ul>
-                <a class="case-launch" href="https://youtu.be/h08XZwRaAuk?si=zCP22AJUq7YYSkWA" target="_blank" rel="noopener noreferrer">Launch project <span aria-hidden="true">↗</span></a>
-              </div>
-            </article>
-          </section>
-        </div>
-
-        <p class="projects-interaction-hint">Hover, focus or tap a project to inspect the case study.</p>
+        <p class="directory-index" aria-hidden="true">NF—02</p>
       </section>
 
-      <section class="projects-quant-teaser" aria-labelledby="quant-teaser-title">
-        <div>
-          <p class="subpage-kicker">Next experiment / In development</p>
-          <h2 id="quant-teaser-title">QUANT LAB</h2>
-          <p>A future home for interactive actuarial, economic and probability experiments.</p>
+      <section class="panel directory-projects reveal" aria-label="All projects">
+        <header class="section-header">
+          <p><span>01–06</span> / Project index</p>
+          <p class="directory-note">Open a project to explore it <span aria-hidden="true">↗</span></p>
+        </header>
+
+        <div class="project-grid directory-grid">
+          <article class="project-card">
+            <a class="project-card-link" href="https://youtu.be/h08XZwRaAuk?si=zCP22AJUq7YYSkWA" target="_blank" rel="noopener noreferrer" aria-label="Open Euler’s Identity mathematical animation">
+              <div class="project-art project-art--image">
+                <img src="assets/previews/eulers-identity.jpg" alt="Euler’s Identity mathematical animation preview" width="1280" height="720">
+                <span class="art-chip" aria-hidden="true">e</span>
+                <span class="art-index">01 / 06</span>
+              </div>
+              <div class="project-body">
+                <p class="project-type">Animation / Mathematics</p>
+                <h2>Euler’s Identity</h2>
+                <p>A visual narrative connecting exponential motion, complex numbers and circular geometry.</p>
+                <div class="project-footer"><span>Mathematics · Animation</span><i aria-hidden="true">↗</i></div>
+              </div>
+            </a>
+          </article>
+
+          <article class="project-card">
+            <a class="project-card-link" href="https://crown-blackjack.streamlit.app" target="_blank" rel="noopener noreferrer" aria-label="Open Blackjack Simulator">
+              <div class="project-art project-art--paths">
+                <canvas data-mini-chart="paths" aria-hidden="true"></canvas>
+                <span class="art-chip" aria-hidden="true">±</span>
+                <span class="art-index">02 / 06</span>
+              </div>
+              <div class="project-body">
+                <p class="project-type">Simulation / Risk</p>
+                <h2>Blackjack Simulator</h2>
+                <p>An interactive Monte Carlo model for exploring return, drawdown and bankroll risk.</p>
+                <div class="project-footer"><span>Python · NumPy · Streamlit</span><i aria-hidden="true">↗</i></div>
+              </div>
+            </a>
+          </article>
+
+          <article class="project-card">
+            <a class="project-card-link" href="https://payslip-tool-ui.vercel.app" target="_blank" rel="noopener noreferrer" aria-label="Open Payday Plan">
+              <div class="project-art project-art--image project-art--light">
+                <img src="assets/previews/payday-plan.jpg" alt="Payday Plan shift-pay planner preview" width="1280" height="720">
+                <span class="art-chip" aria-hidden="true">$</span>
+                <span class="art-index">03 / 06</span>
+              </div>
+              <div class="project-body">
+                <p class="project-type">Financial tool / Product</p>
+                <h2>Payday Plan</h2>
+                <p>A shift-pay planner that makes penalty rates, overtime, tax and deductions easier to understand.</p>
+                <div class="project-footer"><span>Next.js · React · TypeScript</span><i aria-hidden="true">↗</i></div>
+              </div>
+            </a>
+          </article>
+
+          <article class="project-card">
+            <a class="project-card-link" href="https://rpubs.com/nathanmaxwellfoale" target="_blank" rel="noopener noreferrer" aria-label="Open Nathan Foale’s R Pubs portfolio">
+              <div class="project-art project-art--image project-art--light">
+                <img src="assets/previews/rpubs.jpg" alt="R Pubs quantitative analysis portfolio preview" width="1280" height="720">
+                <span class="art-chip" aria-hidden="true">R</span>
+                <span class="art-index">04 / 06</span>
+              </div>
+              <div class="project-body">
+                <p class="project-type">Data / Econometrics</p>
+                <h2>R Pubs</h2>
+                <p>Reproducible analyses spanning insurance, forecasting, portfolio modelling and econometrics.</p>
+                <div class="project-footer"><span>R · Econometrics · Forecasting</span><i aria-hidden="true">↗</i></div>
+              </div>
+            </a>
+          </article>
+
+          <article class="project-card">
+            <a class="project-card-link" href="https://www.nathanfoale.com/projects/blockchain-game/" target="_blank" rel="noopener noreferrer" aria-label="Open Block Time probability game">
+              <div class="project-art project-art--image">
+                <img src="assets/previews/block-time.jpg" alt="Block Time Bitcoin probability game preview" width="1280" height="720">
+                <span class="art-chip" aria-hidden="true">₿</span>
+                <span class="art-index">05 / 06</span>
+              </div>
+              <div class="project-body">
+                <p class="project-type">Probability / Game</p>
+                <h2>Block Time</h2>
+                <p>A prediction game that makes Bitcoin’s memoryless waiting-time model tangible.</p>
+                <div class="project-footer"><span>JavaScript · Probability · Canvas</span><i aria-hidden="true">↗</i></div>
+              </div>
+            </a>
+          </article>
+
+          <article class="project-card project-card--disabled">
+            <div class="project-card-link project-card-link--disabled" aria-disabled="true">
+              <div class="project-art project-art--network">
+                <canvas data-mini-chart="network" aria-hidden="true"></canvas>
+                <span class="art-chip" aria-hidden="true">S</span>
+                <span class="art-index">06 / 06</span>
+              </div>
+              <div class="project-body">
+                <p class="project-type">Financial simulation / Concept</p>
+                <h2>SimuFi</h2>
+                <p>A financial-futures simulator for comparing long-term choices across many possible paths.</p>
+                <div class="project-footer"><span>Financial modelling · Simulation</span><i>Coming soon</i></div>
+              </div>
+            </div>
+          </article>
         </div>
-        <a href="../quant-lab/">Enter the lab <span aria-hidden="true">→</span></a>
       </section>
-
-      <div hidden aria-hidden="true">
-        <template data-case-template="animation">
-          <article class="case-study-card">
-            <figure class="case-visual case-visual--image">
-              <img src="assets/previews/eulers-identity.jpg" alt="Euler's Identity mathematical animation preview" width="1280" height="720">
-              <figcaption><span>Video preview / mathematical visualisation</span><span>01 / 06</span></figcaption>
-            </figure>
-            <div class="case-study-content">
-              <header class="case-study-heading"><p>Animation / Mathematics</p><h2>Euler’s Identity</h2></header>
-              <p class="case-problem"><span>The problem</span>Euler’s identity is elegant on paper, but its relationship to exponential motion can feel abstract without a visual model.</p>
-              <div class="case-detail-grid">
-                <section><h3>What I built</h3><p>A short mathematical animation that turns Euler’s identity into a visual narrative.</p></section>
-                <section><h3>How it works</h3><p>Equations, axes and changing geometry reveal how exponential and circular ideas connect.</p></section>
-                <section><h3>What I learned</h3><p>Motion can communicate mathematical structure faster than notation alone.</p></section>
-              </div>
-              <ul class="case-tags" aria-label="Technologies and topics"><li>Mathematics</li><li>Animation</li><li>Visual storytelling</li></ul>
-              <a class="case-launch" href="https://youtu.be/h08XZwRaAuk?si=zCP22AJUq7YYSkWA" target="_blank" rel="noopener noreferrer">Launch project <span aria-hidden="true">↗</span></a>
-            </div>
-          </article>
-        </template>
-
-        <template data-case-template="blackjack">
-          <article class="case-study-card">
-            <div class="case-visual case-visual--blackjack">
-              <div class="blackjack-preview">
-                <p>Monte Carlo lab / Crown rules</p>
-                <h3>BLACKJACK<br><span>SIMULATOR</span></h3>
-                <div class="blackjack-metrics">
-                  <span>Paths<strong>100</strong></span>
-                  <span>Hands<strong>2,000</strong></span>
-                  <span>Spread<strong>1–10</strong></span>
-                </div>
-                <div class="blackjack-chart" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
-              </div>
-              <p class="generated-caption"><span>Live model preview / bankroll paths</span><span>02 / 06</span></p>
-            </div>
-            <div class="case-study-content">
-              <header class="case-study-heading"><p>Simulation / Risk</p><h2>Blackjack Simulator</h2></header>
-              <p class="case-problem"><span>The problem</span>Exploring bankroll risk across thousands of blackjack hands was too slow and opaque in the original simulator.</p>
-              <div class="case-detail-grid">
-                <section><h3>What I built</h3><p>An interactive Monte Carlo simulator with configurable bankroll, bet spread and sample size.</p></section>
-                <section><h3>How it works</h3><p>A vectorised NumPy engine runs many paths together, then reports return, ruin risk and drawdown.</p></section>
-                <section><h3>What I learned</h3><p>Separating inputs from computation and vectorising the model transformed responsiveness.</p></section>
-              </div>
-              <ul class="case-tags" aria-label="Technologies and topics"><li>Python</li><li>NumPy</li><li>Streamlit</li><li>Monte Carlo</li></ul>
-              <a class="case-launch" href="https://crown-blackjack.streamlit.app" target="_blank" rel="noopener noreferrer">Launch project <span aria-hidden="true">↗</span></a>
-            </div>
-          </article>
-        </template>
-
-        <template data-case-template="payday">
-          <article class="case-study-card">
-            <figure class="case-visual case-visual--image case-visual--light">
-              <img src="assets/previews/payday-plan.jpg" alt="Payday Plan shift pay planner preview" width="1280" height="720">
-              <figcaption><span>Application preview / shift pay planning</span><span>03 / 06</span></figcaption>
-            </figure>
-            <div class="case-study-content">
-              <header class="case-study-heading"><p>Financial tool / Product</p><h2>Payday Plan</h2></header>
-              <p class="case-problem"><span>The problem</span>Penalty rates, overtime, tax and ESPP deductions make take-home pay difficult to estimate from a roster.</p>
-              <div class="case-detail-grid">
-                <section><h3>What I built</h3><p>A responsive shift planner with pay breakdowns, rule checks and an ESPP comparison.</p></section>
-                <section><h3>How it works</h3><p>Entered shifts flow through premium, overtime, deduction and tax assumptions to a live estimate.</p></section>
-                <section><h3>What I learned</h3><p>Financial tools feel trustworthy when every assumption is visible and feedback is immediate.</p></section>
-              </div>
-              <ul class="case-tags" aria-label="Technologies and topics"><li>Next.js</li><li>React</li><li>TypeScript</li><li>Financial modelling</li></ul>
-              <a class="case-launch" href="https://payslip-tool-ui.vercel.app" target="_blank" rel="noopener noreferrer">Launch project <span aria-hidden="true">↗</span></a>
-            </div>
-          </article>
-        </template>
-
-        <template data-case-template="rpubs">
-          <article class="case-study-card">
-            <figure class="case-visual case-visual--image case-visual--light">
-              <img src="assets/previews/rpubs.jpg" alt="Nathan Foale's R Pubs analysis portfolio preview" width="1280" height="720">
-              <figcaption><span>Portfolio preview / reproducible analysis</span><span>04 / 06</span></figcaption>
-            </figure>
-            <div class="case-study-content">
-              <header class="case-study-heading"><p>Data / Econometrics</p><h2>R Pubs</h2></header>
-              <p class="case-problem"><span>The problem</span>Quantitative coursework can become a collection of isolated outputs instead of a clear, reusable analytical portfolio.</p>
-              <div class="case-detail-grid">
-                <section><h3>What I built</h3><p>Published analyses spanning insurance, retail forecasting, portfolio modelling and econometrics.</p></section>
-                <section><h3>How it works</h3><p>Reproducible R reports combine data preparation, modelling, visualisation and written interpretation.</p></section>
-                <section><h3>What I learned</h3><p>A model becomes useful when its assumptions and results can be explained as a coherent story.</p></section>
-              </div>
-              <ul class="case-tags" aria-label="Technologies and topics"><li>R</li><li>R Markdown</li><li>Econometrics</li><li>Forecasting</li></ul>
-              <a class="case-launch" href="https://rpubs.com/nathanmaxwellfoale" target="_blank" rel="noopener noreferrer">Launch project <span aria-hidden="true">↗</span></a>
-            </div>
-          </article>
-        </template>
-
-        <template data-case-template="block-time">
-          <article class="case-study-card">
-            <figure class="case-visual case-visual--image">
-              <img src="assets/previews/block-time.jpg" alt="Block Time Bitcoin probability game preview" width="1280" height="720">
-              <figcaption><span>Application preview / probability game</span><span>05 / 06</span></figcaption>
-            </figure>
-            <div class="case-study-content">
-              <header class="case-study-heading"><p>Probability / Game</p><h2>Block Time</h2></header>
-              <p class="case-problem"><span>The problem</span>Bitcoin’s ten-minute block target sounds regular, even though each block arrives through a memoryless random process.</p>
-              <div class="case-detail-grid">
-                <section><h3>What I built</h3><p>A prediction game that turns the exponential waiting-time model into a fast interactive challenge.</p></section>
-                <section><h3>How it works</h3><p>Players choose a time, then a compressed simulation samples the distribution and scores the prediction.</p></section>
-                <section><h3>What I learned</h3><p>Uncertainty becomes intuitive when people make a prediction before seeing the outcome.</p></section>
-              </div>
-              <ul class="case-tags" aria-label="Technologies and topics"><li>JavaScript</li><li>Probability</li><li>Canvas</li><li>Bitcoin API</li></ul>
-              <a class="case-launch" href="blockchain-game/">Launch project <span aria-hidden="true">→</span></a>
-            </div>
-          </article>
-        </template>
-
-        <template data-case-template="simufi">
-          <article class="case-study-card">
-            <div class="case-visual case-visual--simufi">
-              <div class="simufi-preview">
-                <div class="simufi-orbit" aria-hidden="true"><span></span><span></span><span></span></div>
-                <p>Financial futures / Concept 0.1</p>
-                <h3>SIMU<span>FI</span></h3>
-                <div class="simufi-paths" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
-                <strong>Scenario engine in development</strong>
-              </div>
-              <p class="generated-caption"><span>Concept preview / financial futures</span><span>06 / 06</span></p>
-            </div>
-            <div class="case-study-content">
-              <header class="case-study-heading"><p>Financial simulation / Concept</p><h2>SimuFi</h2></header>
-              <p class="case-problem"><span>The problem</span>Long-term financial choices are difficult to compare when uncertain returns and compounding interact over decades.</p>
-              <div class="case-detail-grid">
-                <section><h3>What I’m building</h3><p>An approachable financial future simulator for comparing decisions across many possible paths.</p></section>
-                <section><h3>How it will work</h3><p>Users will adjust assumptions and compare distributions rather than relying on one deterministic forecast.</p></section>
-                <section><h3>What I’m exploring</h3><p>How to communicate uncertainty honestly without making the experience feel overwhelming.</p></section>
-              </div>
-              <ul class="case-tags" aria-label="Planned technologies and topics"><li>Financial modelling</li><li>Simulation</li><li>Product design</li></ul>
-              <span class="case-launch case-launch--disabled" aria-disabled="true">Coming soon <span aria-hidden="true">⌁</span></span>
-            </div>
-          </article>
-        </template>
-      </div>
     </main>
-    <script src="../assets/site.js"></script>
+
+    <footer class="site-footer">
+      <div class="footer-brand">
+        <a class="brand" href="../" aria-label="Nathan Foale, homepage"><img src="../assets/nf-logo-mark-header.png" alt="" aria-hidden="true"></a>
+        <p>© <span data-year>2026</span> Nathan Foale<br>All rights reserved.</p>
+      </div>
+      <nav aria-label="Footer navigation">
+        <p>Navigation</p>
+        <a href="../about/">About</a>
+        <a href="./">Projects</a>
+        <a href="../blog/">Blog</a>
+        <a href="../poker/">Poker Corner</a>
+        <a href="../#build">Build with me</a>
+      </nav>
+      <nav aria-label="Social links">
+        <p>Connect</p>
+        <a href="mailto:nathan@nathanfoale.com?subject=Hello%20Nathan">nathan@nathanfoale.com <span aria-hidden="true">↗</span></a>
+        <a href="https://www.linkedin.com/in/nathanfoale" target="_blank" rel="noopener noreferrer">LinkedIn <span aria-hidden="true">↗</span></a>
+        <a href="https://github.com/nathanfoale" target="_blank" rel="noopener noreferrer">GitHub <span aria-hidden="true">↗</span></a>
+      </nav>
+    </footer>
   </body>
 </html>

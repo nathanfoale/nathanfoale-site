@@ -1,110 +1,74 @@
 <!doctype html>
-<html lang="en">
+<html lang="en-AU">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-    <meta name="theme-color" content="#07050a">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="theme-color" content="#08090d">
+    <meta name="description" content="Essays by Nathan Foale on morality, belief, freedom, politics and the experience of being conscious.">
     <title>Nathan Foale | Blog</title>
-    <meta name="description" content="Essays and evolving thoughts from Nathan Foale on morality, free will, faith, politics and philosophy.">
     <meta property="og:title" content="Nathan Foale | Blog">
-    <meta property="og:description" content="Essays on morality, free will, faith, politics and philosophy.">
+    <meta property="og:description" content="Thoughts in progress on morality, belief, freedom, politics and consciousness.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://www.nathanfoale.com/blog/">
     <meta property="og:image" content="https://www.nathanfoale.com/blog/og.png">
     <meta name="twitter:card" content="summary_large_image">
     <link rel="canonical" href="https://www.nathanfoale.com/blog/">
     <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-    <link rel="stylesheet" href="../assets/site.css">
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-P6E7QEZ6HX"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag("js", new Date());
-      gtag("config", "G-P6E7QEZ6HX");
-    </script>
+    <link rel="stylesheet" href="../styles.css">
+    <script src="../app.js" defer></script>
   </head>
-  <body class="blog-body">
-    <main class="blog-shell">
-      <canvas class="particle-canvas" data-particles aria-hidden="true"></canvas>
-      <div class="grain" aria-hidden="true"></div>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
 
-      <header class="blog-nav">
-        <a class="back-link" href="../"><span aria-hidden="true">←</span> Portfolio</a>
-        <p>NF / WRITING</p>
-      </header>
+    <header class="site-header" data-header>
+      <a class="brand" href="../" aria-label="Nathan Foale, homepage"><img src="../assets/nf-logo-mark-header.png" alt="" aria-hidden="true"></a>
+      <nav class="desktop-nav" aria-label="Primary navigation">
+        <a href="../about/">About</a><a href="../projects/">Projects</a><a href="./" aria-current="page">Blog</a><a href="../poker/">Poker</a><a class="nav-contact" href="mailto:contact@nathanfoale.com?subject=Website%20enquiry">Contact</a>
+      </nav>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-menu"><span>Menu</span><i aria-hidden="true"></i></button>
+      <nav class="mobile-nav" id="mobile-menu" aria-label="Mobile navigation" hidden>
+        <a href="../">Home</a><a href="../about/">About</a><a href="../projects/">Projects</a><a href="../poker/">Poker</a><a href="mailto:contact@nathanfoale.com?subject=Website%20enquiry">Contact</a>
+      </nav>
+    </header>
 
-      <section class="blog-hero" aria-labelledby="blog-title">
-        <div class="blog-hero-copy">
-          <p class="blog-kicker">Essays / Ideas in progress</p>
-          <h1 id="blog-title">THOUGHTS<br><span>IN PROGRESS.</span></h1>
-          <p class="blog-intro">A place for questions I can’t quite leave alone—morality, belief, freedom, politics and the strange experience of being conscious.</p>
+    <main id="main" class="writing-shell">
+      <section class="writing-hero reveal" aria-labelledby="writing-title">
+        <a class="directory-back" href="../"><span aria-hidden="true">←</span> Homepage</a>
+        <div class="writing-hero-copy">
+          <p class="eyebrow"><span aria-hidden="true"></span>Essays / Ideas in progress</p>
+          <h1 id="writing-title">Thoughts<br><span>in progress.</span></h1>
+          <p>A place for questions I can’t quite leave alone—morality, belief, freedom, politics and the strange experience of being conscious.</p>
         </div>
-        <figure class="blog-art">
+        <figure class="writing-art">
           <img src="assets/determinism-doodle.png" alt="Nathan's handwritten determinism and free-will artwork" width="960" height="1152">
           <figcaption>Notebook study / determinism &amp; free will</figcaption>
         </figure>
       </section>
 
-      <section class="featured-post" aria-labelledby="latest-heading">
-        <div class="featured-label">
-          <p>Latest essay</p>
-          <span>01 / 05</span>
-        </div>
+      <section class="panel featured-essay reveal" aria-labelledby="latest-title">
+        <div class="featured-essay-label"><p class="section-label"><span>01</span> / Latest essay</p><span>4 min read</span></div>
         <a href="western-anti-westernism/">
-          <div>
-            <p class="post-meta"><time datetime="2026-03-16">16 Mar 2026</time> · Politics &amp; philosophy</p>
-            <h2 id="latest-heading">Western Anti-Westernism</h2>
-            <p>On liberal values, ideological consistency and the difficulty of applying the same moral standards everywhere.</p>
-          </div>
-          <span class="featured-arrow" aria-hidden="true">→</span>
+          <div><p><time datetime="2026-03-16">16 Mar 2026</time> · Politics &amp; philosophy</p><h2 id="latest-title">Western Anti-Westernism</h2><p>On liberal values, ideological consistency and the difficulty of applying the same moral standards everywhere.</p></div>
+          <span aria-hidden="true">→</span>
         </a>
       </section>
 
-      <section class="blog-index" aria-labelledby="all-writing">
-        <header>
-          <p class="blog-kicker" id="all-writing">All writing</p>
-          <p>Five entries / newest first</p>
-        </header>
-        <div class="blog-post-list">
-          <a class="blog-post-row" href="western-anti-westernism/">
-            <span class="blog-post-number">01</span>
-            <span class="blog-post-title"><strong>Western Anti-Westernism</strong><small>Politics / liberalism / ideology</small></span>
-            <time datetime="2026-03-16">16.03.26</time>
-            <span aria-hidden="true">→</span>
-          </a>
-          <a class="blog-post-row" href="free-will/">
-            <span class="blog-post-number">02</span>
-            <span class="blog-post-title"><strong>Free Will vs Determinism</strong><small>Consciousness / responsibility</small></span>
-            <time datetime="2026-02-09">09.02.26</time>
-            <span aria-hidden="true">→</span>
-          </a>
-          <a class="blog-post-row" href="faith/">
-            <span class="blog-post-number">03</span>
-            <span class="blog-post-title"><strong>Faith</strong><small>Belief / cosmology / epistemology</small></span>
-            <time datetime="2025-03-31">31.03.25</time>
-            <span aria-hidden="true">→</span>
-          </a>
-          <a class="blog-post-row" href="morality/">
-            <span class="blog-post-number">04</span>
-            <span class="blog-post-title"><strong>Morality</strong><small>Objectivity / relativism / meaning</small></span>
-            <time datetime="2024-02-10">10.02.24</time>
-            <span aria-hidden="true">→</span>
-          </a>
-          <div class="blog-post-row blog-post-row--coming-soon">
-            <span class="blog-post-number">05</span>
-            <span class="blog-post-title"><strong>Maritime Powers vs Continental Powers</strong><small>The Geopolitics of Land and Sea</small></span>
-            <span class="post-type">Coming soon</span>
-            <span aria-hidden="true">⌁</span>
-          </div>
+      <section class="panel writing-index reveal" aria-labelledby="all-writing">
+        <header class="section-header"><p id="all-writing"><span>02</span> / All writing</p><small>Five entries / newest first</small></header>
+        <div class="writing-list">
+          <a href="western-anti-westernism/"><span>01</span><span><strong>Western Anti-Westernism</strong><small>Politics / liberalism / ideology</small></span><time datetime="2026-03-16">16.03.26</time><i aria-hidden="true">→</i></a>
+          <a href="free-will/"><span>02</span><span><strong>Free Will vs Determinism</strong><small>Consciousness / responsibility</small></span><time datetime="2026-02-09">09.02.26</time><i aria-hidden="true">→</i></a>
+          <a href="faith/"><span>03</span><span><strong>Faith</strong><small>Belief / cosmology / epistemology</small></span><time datetime="2025-03-31">31.03.25</time><i aria-hidden="true">→</i></a>
+          <a href="morality/"><span>04</span><span><strong>Morality</strong><small>Objectivity / relativism / meaning</small></span><time datetime="2024-02-10">10.02.24</time><i aria-hidden="true">→</i></a>
+          <div class="is-coming-soon"><span>05</span><span><strong>Maritime Powers vs Continental Powers</strong><small>The geopolitics of land and sea</small></span><em>Coming soon</em><i aria-hidden="true">⌁</i></div>
         </div>
       </section>
-
-      <footer class="blog-footer">
-        <p>Written by Nathan Foale.</p>
-        <a href="https://www.linkedin.com/in/nathanfoale" target="_blank" rel="noopener noreferrer">Continue the conversation <span aria-hidden="true">↗</span></a>
-      </footer>
     </main>
-    <script src="../assets/site.js"></script>
+
+    <footer class="site-footer">
+      <div class="footer-brand"><a class="brand" href="../" aria-label="Nathan Foale, homepage"><img src="../assets/nf-logo-mark-header.png" alt="" aria-hidden="true"></a><p>© <span data-year>2026</span> Nathan Foale<br>All rights reserved.</p></div>
+      <nav aria-label="Footer navigation"><p>Navigation</p><a href="../">Home</a><a href="../about/">About</a><a href="../projects/">Projects</a><a href="../poker/">Poker Corner</a></nav>
+      <nav aria-label="Contact"><p>Connect</p><a href="mailto:nathan@nathanfoale.com?subject=Hello%20Nathan">nathan@nathanfoale.com <span aria-hidden="true">↗</span></a><a href="https://www.linkedin.com/in/nathanfoale" target="_blank" rel="noopener noreferrer">LinkedIn <span aria-hidden="true">↗</span></a></nav>
+    </footer>
   </body>
 </html>

@@ -56,11 +56,17 @@ button {
 }
 
 .poker-grid,
-.poker-grain {
+.poker-grain,
+.page-particle-canvas {
   position: fixed;
-  z-index: -2;
   inset: 0;
   pointer-events: none;
+}
+
+.page-particle-canvas {
+  z-index: 0;
+  width: 100%;
+  height: 100%;
 }
 
 .poker-grid {
@@ -84,6 +90,8 @@ button {
 .poker-section,
 .poker-closing,
 .poker-footer {
+  position: relative;
+  z-index: 2;
   width: min(1240px, 100%);
   margin-right: auto;
   margin-left: auto;
@@ -107,8 +115,21 @@ button {
   text-transform: uppercase;
 }
 
-.poker-nav p span {
-  color: var(--green);
+.poker-nav .poker-nav-brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+}
+
+.poker-nav-brand img {
+  display: block;
+  width: 46px;
+  height: auto;
+}
+
+.poker-nav .poker-nav-brand span {
+  color: rgba(220, 246, 233, 0.48);
 }
 
 .poker-nav > div {

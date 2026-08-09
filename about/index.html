@@ -1,120 +1,114 @@
 <!doctype html>
-<html lang="en">
+<html lang="en-AU">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-    <meta name="theme-color" content="#160e1b">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="theme-color" content="#08090d">
+    <meta name="description" content="About Nathan Foale, a quantitatively minded generalist in Melbourne interested in mathematics, economics, technology, markets and decision-making.">
     <title>Nathan Foale | About</title>
-    <meta name="description" content="About Nathan Foale—actuarial studies, mathematical econometrics, technology, writing and a curiosity about uncertainty.">
     <meta property="og:title" content="Nathan Foale | About">
-    <meta property="og:description" content="Mathematics, economics, actuarial studies, technology and writing about the ideas that shape the world.">
+    <meta property="og:description" content="A quantitatively minded generalist exploring mathematics, economics, technology, markets and decision-making.">
     <meta property="og:type" content="profile">
     <meta property="og:url" content="https://www.nathanfoale.com/about/">
     <meta property="og:image" content="https://www.nathanfoale.com/og.png">
     <meta name="twitter:card" content="summary_large_image">
     <link rel="canonical" href="https://www.nathanfoale.com/about/">
     <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-    <link rel="stylesheet" href="../assets/site.css">
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "Person",
-        "@id": "https://www.nathanfoale.com/#person",
-        "name": "Nathan Foale",
-        "url": "https://www.nathanfoale.com/",
-        "jobTitle": "Master of Actuarial Studies Student",
-        "alumniOf": {
-          "@type": "CollegeOrUniversity",
-          "name": "Monash University",
-          "url": "https://www.monash.edu/"
-        },
-        "sameAs": [
-          "https://www.linkedin.com/in/nathanfoale",
-          "https://github.com/nathanfoale",
-          "https://www.instagram.com/nathanfoaale",
-          "https://www.youtube.com/@nathan_foale"
-        ],
-        "knowsAbout": [
-          "Actuarial Mathematics",
-          "Actuarial Statistics",
-          "Corporate Finance",
-          "Financial Mathematics",
-          "Economics",
-          "Probability and Statistics"
-        ]
-      }
-    </script>
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-P6E7QEZ6HX"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag("js", new Date());
-      gtag("config", "G-P6E7QEZ6HX");
-    </script>
+    <link rel="stylesheet" href="../styles.css">
+    <script src="../app.js" defer></script>
   </head>
   <body>
-    <main class="about-shell">
-      <canvas class="particle-canvas" data-particles aria-hidden="true"></canvas>
-      <div class="grain" aria-hidden="true"></div>
+    <a class="skip-link" href="#main">Skip to content</a>
 
-      <article class="about-panel" aria-labelledby="about-title">
-        <header class="subpage-header">
-          <a class="back-link" href="../"><span aria-hidden="true">←</span> Portfolio</a>
-          <p class="subpage-index">NF / ABOUT</p>
-        </header>
+    <header class="site-header" data-header>
+      <a class="brand" href="../" aria-label="Nathan Foale, homepage"><img src="../assets/nf-logo-mark-header.png" alt="" aria-hidden="true"></a>
+      <nav class="desktop-nav" aria-label="Primary navigation">
+        <a href="../#about" aria-current="page">About</a>
+        <a href="../projects/">Projects</a>
+        <a href="../blog/">Blog</a>
+        <a href="../poker/">Poker</a>
+        <a class="nav-contact" href="mailto:contact@nathanfoale.com?subject=Website%20enquiry">Contact</a>
+      </nav>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-menu">
+        <span>Menu</span><i aria-hidden="true"></i>
+      </button>
+      <nav class="mobile-nav" id="mobile-menu" aria-label="Mobile navigation" hidden>
+        <a href="../">Home</a>
+        <a href="../projects/">Projects</a>
+        <a href="../blog/">Blog</a>
+        <a href="../poker/">Poker</a>
+        <a href="mailto:contact@nathanfoale.com?subject=Website%20enquiry">Contact</a>
+      </nav>
+    </header>
 
-        <div class="about-hero">
-          <div>
-            <p class="about-kicker">Profile / Nathan Foale</p>
-            <h1 class="about-title" id="about-title">I TRY TO<br>MAKE SENSE OF<br><span>UNCERTAINTY.</span></h1>
-          </div>
-          <div class="about-monogram" aria-hidden="true">NF</div>
-        </div>
-
-        <div class="about-copy">
-          <p><strong>I’m Nathan Foale.</strong> I completed a Bachelor of Commerce at Monash University, majoring in Mathematical Econometrics and minoring in Economics. I’m now pursuing a Master of Actuarial Studies at Monash, where I’m deepening my understanding of risk, probability, financial systems and data-driven decision-making.</p>
+    <main id="main" class="profile-shell">
+      <section class="profile-hero reveal" aria-labelledby="profile-title">
+        <a class="directory-back" href="../"><span aria-hidden="true">←</span> Homepage</a>
+        <div>
+          <p class="eyebrow"><span aria-hidden="true"></span>Profile / Background</p>
+          <h1 id="profile-title">I TRY TO<br><span>MAKE SENSE OF<br>UNCERTAINTY.</span></h1>
           <p>I’m drawn to questions that don’t have neat answers. Sometimes the best way to approach them is through probability, simulation and data; other times it is through history, politics and philosophy.</p>
-          <p>My academic interests bring together maths, economics and actuarial studies, with a particular focus on risk, uncertainty and complex systems. Through my projects, I explore these ideas by building models, working with data and creating interactive tools that make difficult concepts easier to understand.</p>
-          <p>My writing takes that curiosity beyond the quantitative. I write about geopolitics, political thought, philosophy, religion and the ideas that influence how people understand the world. This portfolio is a collection of the things I’m exploring, creating and gradually making sense of.</p>
         </div>
+        <div class="profile-portrait" aria-hidden="true">
+          <span></span>
+          <img src="../assets/nathan-portrait-transparent.png" alt="" width="1122" height="1402">
+        </div>
+      </section>
 
-        <section class="about-section" aria-labelledby="education-title">
-          <p class="about-section-label" id="education-title">Education</p>
-          <div class="education-grid">
-            <article class="education-card">
-              <span class="education-number">01</span>
-              <span class="education-status">Completed</span>
-              <h2>Bachelor of Commerce</h2>
-              <p>Major in Mathematical Econometrics<br>Minor in Economics<br>Monash University</p>
-            </article>
-            <article class="education-card">
-              <span class="education-number">02</span>
-              <span class="education-status">Current</span>
-              <h2>Master of Actuarial Studies</h2>
-              <p>Monash University</p>
-            </article>
+      <section class="panel profile-story reveal" aria-labelledby="story-title">
+        <header class="section-header"><p><span>01</span> / Background</p></header>
+        <div class="profile-columns profile-biography">
+          <p class="profile-lead" id="story-title">I’m Nathan Foale, a quantitatively minded generalist based in Melbourne. My interests sit somewhere between mathematics, economics, technology, markets and the way people make decisions.</p>
+          <div>
+            <p>Away from work and study, I’m particularly interested in poker — both as a game and for the strategy, probability and decision-making under uncertainty behind it. I’m also into football, padel, the gym and chess, and have a habit of going down rabbit holes on whatever has caught my attention. I spend a lot of time reading and thinking about investing, emerging technology, economics and politics, and enjoy using code and data to explore questions in those areas.</p>
+            <p>Curiosity is probably the common thread. I like understanding why things work, testing ideas for myself, and occasionally turning those ideas into projects or writing.</p>
           </div>
-        </section>
+        </div>
+      </section>
 
-        <section class="about-section" aria-labelledby="focus-title">
-          <p class="about-section-label" id="focus-title">Current focus</p>
-          <ul class="focus-list">
-            <li>Actuarial Mathematics</li>
-            <li>Actuarial Statistics</li>
-            <li>Corporate Finance</li>
-            <li>Financial Mathematics</li>
-            <li>Economics</li>
-            <li>Probability &amp; Statistics</li>
-          </ul>
-        </section>
+      <section class="profile-grid reveal" aria-label="Education and current focus">
+        <article class="panel profile-card">
+          <p class="section-label"><span>02</span> / Education</p>
+          <h2>Bachelor of Commerce</h2>
+          <p>Monash University</p>
+          <dl>
+            <div><dt>Major</dt><dd>Mathematical Econometrics</dd></div>
+            <div><dt>Minor</dt><dd>Economics</dd></div>
+            <div><dt>Status</dt><dd>Completed</dd></div>
+          </dl>
+        </article>
+        <article class="panel profile-card">
+          <p class="section-label"><span>03</span> / Current study</p>
+          <h2>Master of Actuarial Studies</h2>
+          <p>Monash University</p>
+          <dl>
+            <div><dt>Status</dt><dd>In progress</dd></div>
+          </dl>
+        </article>
+      </section>
 
-        <nav class="about-actions" aria-label="Continue exploring">
-          <a href="../projects/">Explore projects <span aria-hidden="true">→</span></a>
-          <a class="about-contact-link" href="mailto:natfoale@gmail.com?subject=Website%20enquiry" aria-label="Email Nathan Foale">Contact me <span aria-hidden="true">↗</span></a>
-        </nav>
-      </article>
+      <section class="panel profile-interests reveal" aria-labelledby="focus-title">
+        <header class="section-header"><p id="focus-title"><span>04</span> / Current Focus</p></header>
+        <div class="current-focus-cloud">
+          <span>Actuarial Mathematics</span>
+          <span>Actuarial Statistics</span>
+          <span>Corporate Finance</span>
+          <span>Financial Mathematics</span>
+          <span>Economics</span>
+          <span>Probability &amp; Statistics</span>
+        </div>
+      </section>
+
+      <section class="panel profile-cta reveal">
+        <div><p class="section-label"><span>05</span> / Next</p><h2>See what I’ve been <em>building.</em></h2></div>
+        <div><a class="button button--primary" href="../projects/">Explore projects <span aria-hidden="true">→</span></a><a class="button button--quiet" href="../">Back home</a></div>
+      </section>
     </main>
-    <script src="../assets/site.js"></script>
+
+    <footer class="site-footer">
+      <div class="footer-brand"><a class="brand" href="../" aria-label="Nathan Foale, homepage"><img src="../assets/nf-logo-mark-header.png" alt="" aria-hidden="true"></a><p>© <span data-year>2026</span> Nathan Foale<br>All rights reserved.</p></div>
+      <nav aria-label="Footer navigation"><p>Navigation</p><a href="../">Home</a><a href="../projects/">Projects</a><a href="../blog/">Writing</a><a href="../poker/">Poker Corner</a></nav>
+      <nav aria-label="Contact"><p>Connect</p><a href="mailto:nathan@nathanfoale.com?subject=Hello%20Nathan">nathan@nathanfoale.com <span aria-hidden="true">↗</span></a><a href="https://www.linkedin.com/in/nathanfoale" target="_blank" rel="noopener noreferrer">LinkedIn <span aria-hidden="true">↗</span></a></nav>
+    </footer>
   </body>
 </html>

@@ -16,13 +16,6 @@
     <link rel="canonical" href="https://www.nathanfoale.com/poker/">
     <link rel="icon" href="/favicon.svg" type="image/svg+xml">
     <link rel="stylesheet" href="poker.css">
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-P6E7QEZ6HX"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag("js", new Date());
-      gtag("config", "G-P6E7QEZ6HX");
-    </script>
   </head>
   <body>
     <main class="poker-shell">
@@ -30,8 +23,8 @@
       <div class="poker-grain" aria-hidden="true"></div>
 
       <nav class="poker-nav" aria-label="Poker Corner navigation">
-        <a class="poker-back" href="../">← Portfolio</a>
-        <p><span>NF</span> / Poker Corner</p>
+        <a class="poker-back" href="../">← Homepage</a>
+        <p class="poker-nav-brand"><img src="../assets/nf-logo-mark-header.png" alt="" aria-hidden="true"><span>/ Poker Corner</span></p>
         <div>
           <a href="#results">Results</a>
           <a href="#biggest-pot">Biggest Pot</a>
@@ -188,7 +181,7 @@
       <section class="poker-section trainer-section" id="trainer" aria-labelledby="trainer-title">
         <header class="poker-section-heading">
           <div>
-            <p class="poker-kicker">Interactive demo / Browser trainer</p>
+            <p class="poker-kicker">Interactive trainer / Browser tool</p>
             <h2 id="trainer-title">MAKE THE<br><span>DECISION.</span></h2>
           </div>
           <p>A browser interpretation of the Python CLI trainer I built to practise positional awareness, pot odds, range equity and realistic sizing.</p>
@@ -295,10 +288,11 @@
       </section>
 
       <footer class="poker-footer">
-        <p>Nathan Foale / Poker Corner demo</p>
+        <p>Nathan Foale / Poker Corner</p>
         <p>Play responsibly. Results are historical.</p>
       </footer>
     </main>
+    <script src="../app.js"></script>
     <script src="poker.js"></script>
   </body>
 </html>

@@ -1,14 +1,14 @@
 <!doctype html>
-<html lang="en">
+<html lang="en-AU">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-    <meta name="theme-color" content="#160e1c">
+    <meta name="theme-color" content="#08090d">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="description" content="Nathan Foale explores ideas, models and systems through actuarial studies, statistics, economics, technology and code.">
     <title>Nathan Foale | Homepage</title>
-    <meta name="description" content="Nathan Foale is a Monash University actuarial studies student building quantitative tools and writing about economics, risk, uncertainty and technology.">
     <meta property="og:title" content="Nathan Foale | Homepage">
-    <meta property="og:description" content="Quantitative tools, projects and writing by Nathan Foale, exploring economics, risk, uncertainty and technology.">
+    <meta property="og:description" content="Ideas, models and systems explored through statistics, economics, technology and code.">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Nathan Foale">
     <meta property="og:url" content="https://www.nathanfoale.com/">
@@ -16,7 +16,8 @@
     <meta name="twitter:card" content="summary_large_image">
     <link rel="canonical" href="https://www.nathanfoale.com/">
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" sizes="any">
-    <link rel="stylesheet" href="assets/site.css">
+    <link rel="stylesheet" href="styles.css">
+    <script src="app.js" defer></script>
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -28,9 +29,7 @@
             "name": "Nathan Foale",
             "alternateName": "Nathan Foale Portfolio",
             "inLanguage": "en-AU",
-            "about": {
-              "@id": "https://www.nathanfoale.com/#person"
-            }
+            "about": { "@id": "https://www.nathanfoale.com/#person" }
           },
           {
             "@type": "Person",
@@ -67,105 +66,223 @@
             "description": "An interactive moral philosophy atlas for exploring ethical intuitions, dilemmas and nearby philosophical traditions.",
             "applicationCategory": "EducationalApplication",
             "operatingSystem": "Any",
-            "creator": {
-              "@id": "https://www.nathanfoale.com/#person"
-            }
+            "creator": { "@id": "https://www.nathanfoale.com/#person" }
           }
         ]
       }
     </script>
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-P6E7QEZ6HX"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag("js", new Date());
-      gtag("config", "G-P6E7QEZ6HX");
-    </script>
   </head>
   <body>
-    <main class="home-shell">
-      <canvas class="particle-canvas" data-particles aria-hidden="true"></canvas>
-      <div class="ambient-light" aria-hidden="true"></div>
-      <div class="grain" aria-hidden="true"></div>
+    <a class="skip-link" href="#main">Skip to content</a>
 
-      <section class="hero-panel" aria-labelledby="intro-heading">
-        <header class="panel-header">
-          <p class="eyebrow">
-            <span class="status-dot" aria-hidden="true"></span>
-            Nathan Foale / Portfolio
-          </p>
-          <p class="index-mark" aria-hidden="true">NF—01</p>
-        </header>
+    <header class="site-header" data-header>
+      <a class="brand" href="#top" aria-label="Nathan Foale, back to top"><img src="assets/nf-logo-mark-header.png" alt="" aria-hidden="true"></a>
+      <nav class="desktop-nav" aria-label="Primary navigation">
+        <a href="#about">About</a>
+        <a href="#projects">Projects</a>
+        <a href="#blog">Blog</a>
+        <a href="#poker">Poker</a>
+        <a href="#build">Build with me</a>
+        <a class="nav-contact" href="mailto:contact@nathanfoale.com?subject=Website%20enquiry">Contact</a>
+      </nav>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-menu">
+        <span>Menu</span><i aria-hidden="true"></i>
+      </button>
+      <nav class="mobile-nav" id="mobile-menu" aria-label="Mobile navigation" hidden>
+        <a href="#about">About</a>
+        <a href="#projects">Projects</a>
+        <a href="#blog">Blog</a>
+        <a href="#poker">Poker</a>
+        <a href="#build">Build with me</a>
+        <a href="mailto:contact@nathanfoale.com?subject=Website%20enquiry">Contact</a>
+      </nav>
+    </header>
 
-        <div class="home-intro">
-          <h1 id="intro-heading" class="typing-title">
-            <span data-typing>Nathan Foale</span><span class="typing-cursor" aria-hidden="true"></span>
-          </h1>
-          <p class="intro-copy">Actuarial, economics and technology projects by Nathan Foale, exploring risk, uncertainty and complex systems.</p>
+    <main id="main">
+      <section class="hero" id="top" aria-labelledby="hero-title">
+        <canvas class="hero-particle-canvas" data-hero-particles aria-hidden="true"></canvas>
+        <div class="hero-glow" aria-hidden="true"></div>
+        <div class="hero-copy reveal">
+          <p class="eyebrow"><span aria-hidden="true"></span>Nathan Foale / Portfolio</p>
+          <h1 id="hero-title">Nathan Foale.<br><em>Ideas, Models &amp; Systems</em></h1>
+          <p class="hero-intro">Exploring problems through statistics, economics, technology and code.</p>
+          <div class="hero-actions">
+            <a class="button button--primary" href="#projects">View projects <span aria-hidden="true">→</span></a>
+            <a class="button button--quiet" href="#about">About me</a>
+          </div>
         </div>
 
-        <nav class="project-grid" aria-label="Featured links" data-nosnippet>
-          <a class="project-link" href="about/">
-            <span class="project-number">01</span>
-            <span class="project-name">About</span>
-            <span class="project-note">Background &amp; focus</span>
-            <span class="project-arrow" aria-hidden="true">→</span>
-          </a>
-          <a class="project-link" href="projects/">
-            <span class="project-number">02</span>
-            <span class="project-name">Projects</span>
-            <span class="project-note">Selected work</span>
-            <span class="project-arrow" aria-hidden="true">→</span>
-          </a>
-          <a class="project-link" href="blog/">
-            <span class="project-number">03</span>
-            <span class="project-name">Blog</span>
-            <span class="project-note">Writing &amp; ideas</span>
-            <span class="project-arrow" aria-hidden="true">→</span>
-          </a>
-          <a class="project-link" href="prompt/">
-            <span class="project-number">04</span>
-            <span class="project-name">Build With Me</span>
-            <span class="project-note">Websites · tools · AI workflows</span>
-            <span class="project-arrow" aria-hidden="true">→</span>
-          </a>
-          <a class="project-link" href="poker/">
-            <span class="project-number">05</span>
-            <span class="project-name">Poker Corner</span>
-            <span class="project-note">Results · strategy · trainer</span>
-            <span class="project-arrow" aria-hidden="true">→</span>
-          </a>
-          <a
-            class="project-link"
-            href="moral-atlas/"
-            aria-label="Open Moral Atlas interactive experience"
-          >
-            <span class="project-number">06</span>
-            <span class="project-name">Moral Atlas</span>
-            <span class="project-note">Interactive ethics · 3D field</span>
-            <span class="project-arrow" aria-hidden="true">→</span>
-          </a>
-          <a class="project-link project-link--wide" href="quant-lab/">
-            <span class="project-number">07</span>
-            <span class="project-name">Quant Lab</span>
-            <span class="project-note">Interactive models · Coming soon</span>
-            <span class="project-arrow" aria-hidden="true">→</span>
-          </a>
-        </nav>
-
-        <footer class="panel-footer">
-          <div class="socials" aria-label="Social profiles">
-            <a href="https://www.instagram.com/nathanfoaale" target="_blank" rel="noopener noreferrer" aria-label="Instagram">IG</a>
-            <a href="https://www.linkedin.com/in/nathanfoale" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">in</a>
-            <a href="https://github.com/nathanfoale" target="_blank" rel="noopener noreferrer" aria-label="GitHub">GH</a>
-            <a href="https://www.youtube.com/@nathan_foale" target="_blank" rel="noopener noreferrer" aria-label="YouTube">YT</a>
+        <div class="system-visual reveal" aria-label="An animated illustrated portrait of Nathan Foale within an interactive orbital field">
+          <canvas class="system-canvas" data-system-canvas aria-hidden="true"></canvas>
+          <div class="portrait-wrap" aria-hidden="true">
+            <img src="assets/nathan-portrait-transparent.png" alt="" width="1122" height="1402">
+            <span class="portrait-scan"></span>
           </div>
-          <p class="interaction-hint" data-nosnippet><span aria-hidden="true">+</span> Tap anywhere to create particles</p>
-        </footer>
+          <p class="visual-caption">Move or tap to interact</p>
+        </div>
       </section>
 
-      <div class="notice" data-notice role="status"></div>
+      <section class="signal-strip reveal" aria-label="Portfolio overview">
+        <div><strong>06</strong><span>Selected projects</span></div>
+        <div><strong>05</strong><span>Published essays</span></div>
+        <div><strong>BCom</strong><span>Completed</span></div>
+        <div><strong>MActSt</strong><span>In progress</span></div>
+      </section>
+
+      <section class="panel about-panel reveal" id="about" aria-labelledby="about-title">
+        <header class="section-header">
+          <p><span>01</span> / About</p>
+          <a href="about/">Full profile <span aria-hidden="true">→</span></a>
+        </header>
+        <div class="about-grid">
+          <div>
+            <h2 id="about-title">I try to make sense of <em>uncertainty.</em></h2>
+            <div class="focus-cloud" aria-label="Current focus areas">
+              <span>Actuarial mathematics</span>
+              <span>Financial mathematics</span>
+              <span>Economics</span>
+              <span>Probability</span>
+            </div>
+          </div>
+          <div class="about-copy">
+            <p>I completed a Bachelor of Commerce at Monash University, majoring in Mathematical Econometrics and minoring in Economics. I’m now pursuing a Master of Actuarial Studies.</p>
+            <p>My work brings together maths, economics and technology—building models, working with data and creating interactive tools that make difficult ideas easier to explore.</p>
+            <a class="text-link" href="about/">More about me <span aria-hidden="true">→</span></a>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel projects-panel reveal" id="projects" aria-labelledby="projects-title">
+        <header class="section-header">
+          <p id="projects-title"><span>02</span> / Selected projects</p>
+          <a href="projects/">View all projects <span aria-hidden="true">→</span></a>
+        </header>
+        <div class="project-grid">
+          <article class="project-card">
+            <a class="project-card-link" href="https://youtu.be/h08XZwRaAuk?si=zCP22AJUq7YYSkWA" target="_blank" rel="noopener noreferrer" aria-label="Open Euler’s Identity mathematical animation">
+              <div class="project-art project-art--identity">
+                <canvas data-mini-chart="identity" aria-hidden="true"></canvas>
+                <span class="art-chip" aria-hidden="true">e</span>
+                <span class="art-index">01 / 03</span>
+              </div>
+              <div class="project-body">
+                <p class="project-type">Animation / Mathematics</p>
+                <h3>Euler’s Identity</h3>
+                <p>A mathematical animation revealing how exponential motion, complex numbers and circular geometry connect.</p>
+                <div class="project-footer"><span>Mathematics · Animation · Visual storytelling</span><i aria-hidden="true">↗</i></div>
+              </div>
+            </a>
+          </article>
+
+          <article class="project-card">
+            <a class="project-card-link" href="https://payslip-tool-ui.vercel.app" target="_blank" rel="noopener noreferrer" aria-label="Open Payday Plan">
+              <div class="project-art project-art--bars">
+                <canvas data-mini-chart="bars" aria-hidden="true"></canvas>
+                <span class="art-chip" aria-hidden="true">$</span>
+                <span class="art-index">02 / 03</span>
+              </div>
+              <div class="project-body">
+                <p class="project-type">Financial tool / Product</p>
+                <h3>Payday Plan</h3>
+                <p>A responsive shift-pay planner that makes penalty rates, overtime, tax and deductions easier to understand.</p>
+                <div class="project-footer"><span>Next.js · React · TypeScript</span><i aria-hidden="true">↗</i></div>
+              </div>
+            </a>
+          </article>
+
+          <article class="project-card">
+            <a class="project-card-link" href="https://www.nathanfoale.com/moral-atlas/" target="_blank" rel="noopener noreferrer" aria-label="Open Moral Atlas">
+              <div class="project-art project-art--network">
+                <canvas data-mini-chart="network" aria-hidden="true"></canvas>
+                <span class="art-chip" aria-hidden="true">◇</span>
+                <span class="art-index">03 / 03</span>
+              </div>
+              <div class="project-body">
+                <p class="project-type">Interactive ethics / 3D field</p>
+                <h3>Moral Atlas</h3>
+                <p>An interactive moral-philosophy landscape for exploring ethical intuitions and nearby traditions.</p>
+                <div class="project-footer"><span>Ethics · Data · Interaction</span><i aria-hidden="true">↗</i></div>
+              </div>
+            </a>
+          </article>
+        </div>
+        <p class="more-work">Also exploring <span>Blackjack Simulator</span>, <span>R Pubs</span>, <span>Block Time</span> and <span>SimuFi</span>.</p>
+      </section>
+
+      <section class="panel blog-panel reveal" id="blog" aria-labelledby="blog-title">
+        <header class="section-header">
+          <p id="blog-title"><span>03</span> / Writing</p>
+          <a href="blog/">View all essays <span aria-hidden="true">→</span></a>
+        </header>
+        <div class="post-list">
+          <a href="blog/western-anti-westernism/">
+            <span class="post-dot" aria-hidden="true"></span>
+            <span class="post-copy"><strong>Western Anti-Westernism</strong><small>Politics / liberalism / ideology</small></span>
+            <time datetime="2026-03-16">16 Mar 2026</time>
+            <i aria-hidden="true">→</i>
+          </a>
+          <a href="blog/free-will/">
+            <span class="post-dot" aria-hidden="true"></span>
+            <span class="post-copy"><strong>Free Will vs Determinism</strong><small>Consciousness / responsibility</small></span>
+            <time datetime="2026-02-09">09 Feb 2026</time>
+            <i aria-hidden="true">→</i>
+          </a>
+          <a href="blog/faith/">
+            <span class="post-dot" aria-hidden="true"></span>
+            <span class="post-copy"><strong>Faith</strong><small>Belief / cosmology / epistemology</small></span>
+            <time datetime="2025-03-31">31 Mar 2025</time>
+            <i aria-hidden="true">→</i>
+          </a>
+        </div>
+      </section>
+
+      <section class="panel poker-panel reveal" id="poker" aria-labelledby="poker-title">
+        <div class="poker-panel-copy">
+          <p class="section-label"><span>04</span> / Poker Corner</p>
+          <h2 id="poker-title">The felt, the maths and the <em>decisions between.</em></h2>
+          <p>A record of results, a featured cash-game hand and an interactive Texas Hold’em trainer for exploring decisions under uncertainty.</p>
+          <a class="button button--primary" href="poker/">Enter Poker Corner <span aria-hidden="true">→</span></a>
+        </div>
+        <div class="poker-panel-table" aria-hidden="true">
+          <span class="poker-panel-chip poker-panel-chip--one">25</span>
+          <span class="poker-panel-chip poker-panel-chip--two">100</span>
+          <div class="poker-panel-cards"><span>A<b>♠</b></span><span>K<b>♠</b></span></div>
+          <p><small>Current study</small><strong>4-Max NLH</strong></p>
+        </div>
+      </section>
+
+      <section class="panel build-panel reveal" id="build" aria-labelledby="build-title">
+        <div>
+          <p class="section-label"><span>05</span> / Build with me</p>
+          <h2 id="build-title">Have an idea worth <em>building?</em></h2>
+        </div>
+        <div class="build-copy">
+          <p>I build websites, practical tools and AI workflows—and I’m always open to interesting projects, collaborations or opportunities.</p>
+          <a class="button button--primary" href="mailto:hello@nathanfoale.com?subject=Project%20collaboration">Let’s connect <span aria-hidden="true">→</span></a>
+        </div>
+      </section>
     </main>
-    <script src="assets/site.js"></script>
+
+    <footer class="site-footer">
+      <div class="footer-brand">
+        <a class="brand" href="#top" aria-label="Nathan Foale, back to top"><img src="assets/nf-logo-mark-header.png" alt="" aria-hidden="true"></a>
+        <p>© <span data-year>2026</span> Nathan Foale<br>All rights reserved.</p>
+      </div>
+      <nav aria-label="Footer navigation">
+        <p>Navigation</p>
+        <a href="#about">About</a>
+        <a href="#projects">Projects</a>
+        <a href="#blog">Blog</a>
+        <a href="#poker">Poker Corner</a>
+        <a href="#build">Build with me</a>
+      </nav>
+      <nav aria-label="Social links">
+        <p>Connect</p>
+        <a href="mailto:nathan@nathanfoale.com?subject=Hello%20Nathan">nathan@nathanfoale.com <span aria-hidden="true">↗</span></a>
+        <a href="https://www.linkedin.com/in/nathanfoale" target="_blank" rel="noopener noreferrer">LinkedIn <span aria-hidden="true">↗</span></a>
+        <a href="https://github.com/nathanfoale" target="_blank" rel="noopener noreferrer">GitHub <span aria-hidden="true">↗</span></a>
+        <a href="https://www.instagram.com/nathanfoaale" target="_blank" rel="noopener noreferrer">Instagram <span aria-hidden="true">↗</span></a>
+      </nav>
+    </footer>
   </body>
 </html>
