@@ -16,26 +16,56 @@
   var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   var menuButton = document.querySelector(".menu-toggle");
   var mobileMenu = document.querySelector(".mobile-nav");
+  var pageMain = document.querySelector("main");
+  var pageFooter = document.querySelector(".site-footer");
 
-  function closeMenu() {
+  function setPageBehindMenu(isInert) {
+    [pageMain, pageFooter].forEach(function (element) {
+      if (!element || !("inert" in element)) return;
+      element.inert = isInert;
+    });
+  }
+
+  function closeMenu(restoreFocus) {
     if (!menuButton || !mobileMenu) return;
     menuButton.setAttribute("aria-expanded", "false");
     mobileMenu.hidden = true;
+    document.documentElement.classList.remove("menu-open");
+    document.body.classList.remove("menu-open");
+    setPageBehindMenu(false);
+    if (restoreFocus) menuButton.focus();
+  }
+
+  function openMenu() {
+    if (!menuButton || !mobileMenu) return;
+    menuButton.setAttribute("aria-expanded", "true");
+    mobileMenu.hidden = false;
+    document.documentElement.classList.add("menu-open");
+    document.body.classList.add("menu-open");
+    setPageBehindMenu(true);
+    window.requestAnimationFrame(function () {
+      var firstMenuLink = mobileMenu.querySelector("a");
+      if (firstMenuLink) firstMenuLink.focus({ preventScroll: true });
+    });
   }
 
   if (menuButton && mobileMenu) {
     menuButton.addEventListener("click", function () {
       var isOpen = menuButton.getAttribute("aria-expanded") === "true";
-      menuButton.setAttribute("aria-expanded", String(!isOpen));
-      mobileMenu.hidden = isOpen;
+      if (isOpen) closeMenu(false);
+      else openMenu();
     });
 
     mobileMenu.addEventListener("click", function (event) {
-      if (event.target.closest("a")) closeMenu();
+      if (event.target.closest("a")) closeMenu(false);
     });
 
     document.addEventListener("keydown", function (event) {
-      if (event.key === "Escape") closeMenu();
+      if (event.key === "Escape" && menuButton.getAttribute("aria-expanded") === "true") closeMenu(true);
+    });
+
+    window.addEventListener("resize", function () {
+      if (window.innerWidth > 720 && menuButton.getAttribute("aria-expanded") === "true") closeMenu(false);
     });
   }
 

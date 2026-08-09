@@ -75,6 +75,7 @@ body > .reading-progress {
 
 body > .site-header {
   position: sticky;
+  z-index: 1000;
 }
 
 main > :not(.page-particle-canvas) {
@@ -1635,6 +1636,11 @@ main,
 }
 
 @media (max-width: 720px) {
+  html.menu-open,
+  body.menu-open {
+    overflow: hidden;
+  }
+
   .site-header,
   main,
   .site-footer {
@@ -1699,14 +1705,20 @@ main,
   .mobile-nav {
     position: absolute;
     top: calc(100% + 1px);
-    right: -14px;
-    left: -14px;
+    right: calc((100vw - 100%) / -2);
+    left: calc((100vw - 100%) / -2);
     display: grid;
+    align-content: start;
     gap: 0;
-    padding: 0.6rem 14px 0.85rem;
-    border-bottom: 1px solid var(--line);
-    background: rgba(8, 9, 13, 0.97);
-    box-shadow: 0 20px 35px rgba(0, 0, 0, 0.38);
+    height: calc(100dvh - 72px);
+    min-height: calc(100svh - 72px);
+    padding: 1rem max(24px, env(safe-area-inset-right)) max(2rem, env(safe-area-inset-bottom)) max(24px, env(safe-area-inset-left));
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    border-bottom: 0;
+    background: #08090d;
+    box-shadow: none;
+    -webkit-overflow-scrolling: touch;
   }
 
   .mobile-nav[hidden] {
@@ -1714,8 +1726,12 @@ main,
   }
 
   .mobile-nav a {
-    padding: 0.85rem 0;
+    display: flex;
+    align-items: center;
+    min-height: 62px;
+    padding: 1rem 0;
     border-bottom: 1px solid var(--line);
+    font-size: 0.78rem;
   }
 
   .mobile-nav a:last-child {
