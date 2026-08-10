@@ -83,6 +83,92 @@
     window.addEventListener("popstate", function () { closeMenu(false); });
   }
 
+  var lockedEssay = document.body.classList.contains("essay-locked");
+  if (lockedEssay) {
+    var essayMain = document.querySelector("main");
+    var essayGate = document.createElement("section");
+    essayGate.className = "essay-gate";
+    essayGate.setAttribute("role", "dialog");
+    essayGate.setAttribute("aria-modal", "true");
+    essayGate.setAttribute("aria-labelledby", "essay-gate-title");
+    essayGate.innerHTML = [
+      '<div class="essay-gate__panel">',
+      '  <p class="essay-gate__eyebrow"><span></span>PRIVATE ESSAY</p>',
+      '  <h1 id="essay-gate-title"><span>PASSCODE</span><strong>REQUIRED.</strong></h1>',
+      '  <p class="essay-gate__intro">Enter the four-digit passcode to read this essay.</p>',
+      '  <form class="essay-gate__form" novalidate>',
+      '    <label for="essay-passcode">PASSCODE</label>',
+      '    <div class="essay-gate__controls">',
+      '      <input id="essay-passcode" name="passcode" type="password" inputmode="numeric" autocomplete="off" maxlength="4" pattern="[0-9]{4}" aria-describedby="essay-gate-error" required>',
+      '      <button type="submit">VIEW ESSAY <span aria-hidden="true">&#8594;</span></button>',
+      '    </div>',
+      '    <p class="essay-gate__error" id="essay-gate-error" aria-live="polite"></p>',
+      '  </form>',
+      '  <a class="essay-gate__back" href="/blog/">&#8592; BACK TO WRITING</a>',
+      '</div>'
+    ].join("");
+    document.body.appendChild(essayGate);
+
+    var essayForm = essayGate.querySelector("form");
+    var essayInput = essayGate.querySelector("input");
+    var essayError = essayGate.querySelector(".essay-gate__error");
+    var expectedPasscodeHash = "408311ba9b03d5d2d41463f1b49280625f826a70a7dc5ccd92d0b41b93b26be2";
+
+    function hashPasscode(value) {
+      return window.crypto.subtle.digest("SHA-256", new TextEncoder().encode(value)).then(function (buffer) {
+        return Array.prototype.map.call(new Uint8Array(buffer), function (byte) {
+          return byte.toString(16).padStart(2, "0");
+        }).join("");
+      });
+    }
+
+    function unlockEssay() {
+      document.body.classList.remove("essay-locked");
+      document.body.classList.add("essay-unlocked");
+      if (essayMain) {
+        essayMain.removeAttribute("inert");
+        essayMain.removeAttribute("aria-hidden");
+      }
+      essayGate.remove();
+      var essayTitle = document.querySelector(".article-header h1");
+      if (essayTitle) {
+        essayTitle.setAttribute("tabindex", "-1");
+        essayTitle.focus({ preventScroll: true });
+      }
+    }
+
+    essayInput.addEventListener("input", function () {
+      essayInput.value = essayInput.value.replace(/\D/g, "").slice(0, 4);
+      essayError.textContent = "";
+      essayInput.removeAttribute("aria-invalid");
+    });
+
+    essayForm.addEventListener("submit", function (event) {
+      event.preventDefault();
+      if (essayInput.value.length !== 4) {
+        essayError.textContent = "Enter the four-digit passcode.";
+        essayInput.setAttribute("aria-invalid", "true");
+        essayInput.focus();
+        return;
+      }
+
+      hashPasscode(essayInput.value).then(function (submittedHash) {
+        if (submittedHash === expectedPasscodeHash) {
+          unlockEssay();
+          return;
+        }
+        essayError.textContent = "Incorrect passcode. Try again.";
+        essayInput.setAttribute("aria-invalid", "true");
+        essayInput.value = "";
+        essayInput.focus();
+      }).catch(function () {
+        essayError.textContent = "Unable to check the passcode. Please try again.";
+      });
+    });
+
+    window.requestAnimationFrame(function () { essayInput.focus({ preventScroll: true }); });
+  }
+
   var year = document.querySelector("[data-year]");
   if (year) year.textContent = String(new Date().getFullYear());
 

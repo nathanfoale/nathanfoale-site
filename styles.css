@@ -2070,6 +2070,199 @@ main,
   }
 }
 
+body.essay-locked {
+  height: 100dvh;
+  overflow: hidden;
+}
+
+body.essay-locked > main,
+body.essay-locked > .reading-progress {
+  visibility: hidden;
+}
+
+.essay-gate {
+  position: fixed;
+  inset: 0;
+  z-index: 3000;
+  display: grid;
+  place-items: center;
+  min-width: 320px;
+  min-height: 100dvh;
+  padding: max(24px, env(safe-area-inset-top)) max(20px, env(safe-area-inset-right)) max(24px, env(safe-area-inset-bottom)) max(20px, env(safe-area-inset-left));
+  overflow-y: auto;
+  background:
+    radial-gradient(circle at 18% 12%, rgba(73, 44, 94, 0.24), transparent 27rem),
+    radial-gradient(circle at 88% 72%, rgba(20, 116, 82, 0.12), transparent 30rem),
+    #08090d;
+}
+
+.essay-gate::before {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  content: "";
+  opacity: 0.3;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.018) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.014) 1px, transparent 1px);
+  background-size: 64px 64px;
+}
+
+.essay-gate__panel {
+  position: relative;
+  width: min(100%, 620px);
+  padding: clamp(30px, 6vw, 64px);
+  border: 1px solid var(--line-bright);
+  border-radius: 18px;
+  background: rgba(11, 12, 17, 0.9);
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+}
+
+.essay-gate__eyebrow {
+  display: flex;
+  gap: 0.8rem;
+  align-items: center;
+  margin: 0 0 1.65rem;
+  color: var(--muted);
+  font-size: 0.72rem;
+  letter-spacing: 0.16em;
+}
+
+.essay-gate__eyebrow span {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--green);
+  box-shadow: 0 0 14px rgba(61, 242, 160, 0.8);
+}
+
+.essay-gate h1 {
+  margin: 0;
+  font-size: clamp(2.35rem, 8vw, 5rem);
+  font-weight: 600;
+  line-height: 0.98;
+  letter-spacing: -0.055em;
+}
+
+.essay-gate h1 span,
+.essay-gate h1 strong {
+  display: block;
+}
+
+.essay-gate h1 strong {
+  margin-top: 0.18em;
+  color: transparent;
+  font-weight: 500;
+  -webkit-text-stroke: 1px var(--green);
+}
+
+.essay-gate__intro {
+  max-width: 42ch;
+  margin: 1.8rem 0 2rem;
+  color: var(--muted);
+}
+
+.essay-gate__form label {
+  display: block;
+  margin-bottom: 0.65rem;
+  color: var(--green);
+  font-size: 0.7rem;
+  letter-spacing: 0.16em;
+}
+
+.essay-gate__controls {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 0.8rem;
+}
+
+.essay-gate input,
+.essay-gate button {
+  min-height: 54px;
+  border: 1px solid var(--line-bright);
+  border-radius: 999px;
+  color: var(--text);
+  background: rgba(8, 9, 13, 0.76);
+  font: inherit;
+}
+
+.essay-gate input {
+  width: 100%;
+  padding: 0 1.35rem;
+  outline: none;
+  letter-spacing: 0.4em;
+}
+
+.essay-gate input:focus {
+  border-color: var(--green);
+  box-shadow: 0 0 0 3px rgba(61, 242, 160, 0.1);
+}
+
+.essay-gate input[aria-invalid="true"] {
+  border-color: #ff7789;
+}
+
+.essay-gate button {
+  padding: 0 1.5rem;
+  border-color: rgba(61, 242, 160, 0.65);
+  cursor: pointer;
+  letter-spacing: 0.05em;
+  transition: color 160ms ease, background-color 160ms ease, transform 160ms ease;
+}
+
+.essay-gate button:hover,
+.essay-gate button:focus-visible {
+  color: var(--bg);
+  background: var(--green);
+  transform: translateY(-1px);
+}
+
+.essay-gate button span {
+  margin-left: 0.65rem;
+}
+
+.essay-gate__error {
+  min-height: 1.65em;
+  margin: 0.65rem 0 0;
+  color: #ff9baa;
+  font-size: 0.78rem;
+}
+
+.essay-gate__back {
+  display: inline-block;
+  margin-top: 1.5rem;
+  color: var(--muted);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+}
+
+.essay-gate__back:hover,
+.essay-gate__back:focus-visible {
+  color: var(--green);
+}
+
+@media (max-width: 560px) {
+  .essay-gate {
+    align-items: end;
+    padding-inline: 14px;
+  }
+
+  .essay-gate__panel {
+    padding: 28px 22px 30px;
+    border-radius: 16px;
+  }
+
+  .essay-gate__controls {
+    grid-template-columns: 1fr;
+  }
+
+  .essay-gate button {
+    width: 100%;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
