@@ -201,11 +201,13 @@
   function fitCanvas(canvas) {
     var rect = canvas.getBoundingClientRect();
     var ratio = Math.min(window.devicePixelRatio || 1, 2);
-    canvas.width = Math.max(1, Math.round(rect.width * ratio));
-    canvas.height = Math.max(1, Math.round(rect.height * ratio));
+    var width = Math.max(1, Math.round(rect.width));
+    var height = Math.max(1, Math.round(rect.height));
+    canvas.width = Math.max(1, Math.round(width * ratio));
+    canvas.height = Math.max(1, Math.round(height * ratio));
     var context = canvas.getContext("2d");
     context.setTransform(ratio, 0, 0, ratio, 0, 0);
-    return { context: context, width: rect.width, height: rect.height };
+    return { context: context, width: width, height: height, ratio: ratio };
   }
 
   var pageParticleCanvas = document.createElement("canvas");
@@ -221,6 +223,8 @@
   var pageParticleRipples = [];
   var pageParticlePointer = { x: 0, y: 0, active: false };
   var pageParticleFrame = 0;
+  var pageParticleRefreshFrame = 0;
+  var pageParticleSettleFrame = 0;
   var pageParticleTrailTime = 0;
 
   function seedPageParticleField() {
@@ -399,14 +403,58 @@
     if (!reduceMotion) pageParticleFrame = window.requestAnimationFrame(drawPageParticleField);
   }
 
-  seedPageParticleField();
-  drawPageParticleField(0);
-  window.addEventListener("resize", function () {
+  function restartPageParticleField() {
+    if (pageParticleFrame) window.cancelAnimationFrame(pageParticleFrame);
+    pageParticleFrame = 0;
+    pageParticlePointer.active = false;
     seedPageParticleField();
-    if (reduceMotion) drawPageParticleField(0);
+    drawPageParticleField(window.performance.now());
+  }
+
+  function schedulePageParticleRefresh() {
+    if (pageParticleRefreshFrame) window.cancelAnimationFrame(pageParticleRefreshFrame);
+    if (pageParticleSettleFrame) window.cancelAnimationFrame(pageParticleSettleFrame);
+    pageParticleRefreshFrame = window.requestAnimationFrame(function () {
+      pageParticleRefreshFrame = 0;
+      pageParticleSettleFrame = window.requestAnimationFrame(function () {
+        pageParticleSettleFrame = 0;
+        restartPageParticleField();
+      });
+    });
+  }
+
+  function pageParticleCanvasNeedsRefresh() {
+    if (!pageParticleMetrics) return true;
+    var rect = pageParticleCanvas.getBoundingClientRect();
+    var ratio = Math.min(window.devicePixelRatio || 1, 2);
+    return Math.abs(Math.round(rect.width) - pageParticleMetrics.width) > 1
+      || Math.abs(Math.round(rect.height) - pageParticleMetrics.height) > 1
+      || pageParticleCanvas.width !== Math.max(1, Math.round(pageParticleMetrics.width * ratio))
+      || pageParticleCanvas.height !== Math.max(1, Math.round(pageParticleMetrics.height * ratio));
+  }
+
+  schedulePageParticleRefresh();
+  window.addEventListener("resize", schedulePageParticleRefresh);
+  window.addEventListener("pageshow", schedulePageParticleRefresh);
+  window.addEventListener("orientationchange", schedulePageParticleRefresh);
+  document.addEventListener("visibilitychange", function () {
+    if (!document.hidden) schedulePageParticleRefresh();
   });
+  if (window.visualViewport) window.visualViewport.addEventListener("resize", schedulePageParticleRefresh);
+  if ("ResizeObserver" in window) {
+    var pageParticleResizeObserver = new ResizeObserver(function () {
+      if (pageParticleCanvasNeedsRefresh()) schedulePageParticleRefresh();
+    });
+    pageParticleResizeObserver.observe(pageParticleCanvas);
+  }
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(schedulePageParticleRefresh);
   window.addEventListener("pagehide", function () {
     if (pageParticleFrame) window.cancelAnimationFrame(pageParticleFrame);
+    if (pageParticleRefreshFrame) window.cancelAnimationFrame(pageParticleRefreshFrame);
+    if (pageParticleSettleFrame) window.cancelAnimationFrame(pageParticleSettleFrame);
+    pageParticleFrame = 0;
+    pageParticleRefreshFrame = 0;
+    pageParticleSettleFrame = 0;
   });
 
   var hero = document.querySelector(".hero");
@@ -418,6 +466,8 @@
     var orbitRings = [];
     var heroPointer = { x: 0, y: 0, active: false };
     var heroAnimationFrame = 0;
+    var heroRefreshFrame = 0;
+    var heroSettleFrame = 0;
     var lastTrailTime = 0;
 
     function seedHeroParticles() {
@@ -603,14 +653,58 @@
       if (!reduceMotion) heroAnimationFrame = window.requestAnimationFrame(drawHeroParticles);
     }
 
-    seedHeroParticles();
-    drawHeroParticles(0);
-    window.addEventListener("resize", function () {
+    function restartHeroParticles() {
+      if (heroAnimationFrame) window.cancelAnimationFrame(heroAnimationFrame);
+      heroAnimationFrame = 0;
+      heroPointer.active = false;
       seedHeroParticles();
-      if (reduceMotion) drawHeroParticles(0);
+      drawHeroParticles(window.performance.now());
+    }
+
+    function scheduleHeroParticleRefresh() {
+      if (heroRefreshFrame) window.cancelAnimationFrame(heroRefreshFrame);
+      if (heroSettleFrame) window.cancelAnimationFrame(heroSettleFrame);
+      heroRefreshFrame = window.requestAnimationFrame(function () {
+        heroRefreshFrame = 0;
+        heroSettleFrame = window.requestAnimationFrame(function () {
+          heroSettleFrame = 0;
+          restartHeroParticles();
+        });
+      });
+    }
+
+    function heroCanvasNeedsRefresh() {
+      if (!heroMetrics) return true;
+      var rect = heroCanvas.getBoundingClientRect();
+      var ratio = Math.min(window.devicePixelRatio || 1, 2);
+      return Math.abs(Math.round(rect.width) - heroMetrics.width) > 1
+        || Math.abs(Math.round(rect.height) - heroMetrics.height) > 1
+        || heroCanvas.width !== Math.max(1, Math.round(heroMetrics.width * ratio))
+        || heroCanvas.height !== Math.max(1, Math.round(heroMetrics.height * ratio));
+    }
+
+    scheduleHeroParticleRefresh();
+    window.addEventListener("resize", scheduleHeroParticleRefresh);
+    window.addEventListener("pageshow", scheduleHeroParticleRefresh);
+    window.addEventListener("orientationchange", scheduleHeroParticleRefresh);
+    document.addEventListener("visibilitychange", function () {
+      if (!document.hidden) scheduleHeroParticleRefresh();
     });
+    if (window.visualViewport) window.visualViewport.addEventListener("resize", scheduleHeroParticleRefresh);
+    if ("ResizeObserver" in window) {
+      var heroResizeObserver = new ResizeObserver(function () {
+        if (heroCanvasNeedsRefresh()) scheduleHeroParticleRefresh();
+      });
+      heroResizeObserver.observe(heroCanvas);
+    }
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(scheduleHeroParticleRefresh);
     window.addEventListener("pagehide", function () {
       if (heroAnimationFrame) window.cancelAnimationFrame(heroAnimationFrame);
+      if (heroRefreshFrame) window.cancelAnimationFrame(heroRefreshFrame);
+      if (heroSettleFrame) window.cancelAnimationFrame(heroSettleFrame);
+      heroAnimationFrame = 0;
+      heroRefreshFrame = 0;
+      heroSettleFrame = 0;
     });
   }
 
@@ -679,12 +773,23 @@
       if (!reduceMotion) animationFrame = window.requestAnimationFrame(drawField);
     }
 
-    drawField(0);
+    function restartFieldAnimation() {
+      if (animationFrame) window.cancelAnimationFrame(animationFrame);
+      animationFrame = 0;
+      drawField(window.performance.now());
+    }
+
+    restartFieldAnimation();
+    window.addEventListener("pageshow", restartFieldAnimation);
+    document.addEventListener("visibilitychange", function () {
+      if (!document.hidden) restartFieldAnimation();
+    });
     window.addEventListener("resize", function () {
       if (reduceMotion) drawField(0);
     });
     window.addEventListener("pagehide", function () {
       if (animationFrame) window.cancelAnimationFrame(animationFrame);
+      animationFrame = 0;
     });
   }
 
