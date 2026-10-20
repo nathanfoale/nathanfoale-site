@@ -1,23 +1,12 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "headers": [
-    {
-      "source": "/(.*)",
-      "headers": [
-        {
-          "key": "X-Robots-Tag",
-          "value": "noindex, nofollow, noarchive"
-        },
-        {
-          "key": "Cache-Control",
-          "value": "no-store, max-age=0"
-        }
-      ]
-    }
-  ],
   "routes": [
     {
       "src": "/(?!index\\.html$|styles\\.css$|app\\.js$|favicon\\.svg$|og\\.png$|robots\\.txt$|assets/(?:nf-logo-mark-header\\.png|nathan-portrait-transparent\\.png)$).*",
+      "headers": {
+        "Cache-Control": "no-store, max-age=0",
+        "X-Robots-Tag": "noindex, nofollow, noarchive"
+      },
       "dest": "/index.html"
     }
   ]
